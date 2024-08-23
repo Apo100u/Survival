@@ -4,6 +4,9 @@ namespace SurvivalGame.Gameplay.Entities.Components
 {
     public class Input : MonoBehaviour
     {
+        [Header("Dependencies")]
+        [SerializeField] private LayerMask groundLayer;
+        
         [Header("Key Binds")]
         [SerializeField] private KeyCode forwardMovement  = KeyCode.W;
         [SerializeField] private KeyCode backwardMovement = KeyCode.S;
@@ -35,6 +38,19 @@ namespace SurvivalGame.Gameplay.Entities.Components
             }
 
             return movementInput.normalized;
+        }
+        
+        public Vector3 GetAimWorldPosition(Camera camera)
+        {
+            Vector3 aimWorldPosition = new();
+            Ray ray = camera.ScreenPointToRay(UnityEngine.Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue, groundLayer))
+            {
+                aimWorldPosition = hitInfo.point;
+            }
+            
+            return aimWorldPosition;
         }
     }
 }

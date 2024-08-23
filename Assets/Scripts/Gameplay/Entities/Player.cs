@@ -8,6 +8,9 @@ namespace SurvivalGame.Gameplay.Entities
     [RequireComponent(typeof(Input))]
     public class Player : Entity
     {
+        [Header("Player Dependencies")]
+        [SerializeField] private Camera mainCamera;
+        
         private Movement movement;
         private Input input;
         
@@ -25,6 +28,7 @@ namespace SurvivalGame.Gameplay.Entities
         private void Update()
         {
             movement.Move(input.GetNormalizedMovementInput() * Time.deltaTime);
+            UpdateVisualsLookAt(input.GetAimWorldPosition(mainCamera));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace SurvivalGame.Gameplay
     public class Gameplay : MonoBehaviour
     {
         [Header("Dependencies")]
-        [Tooltip("Assign GameObject that holds all entities in the scene - used for easier searching.")]
+        [Tooltip("GameObject that holds all entities in the scene - used for easier searching.")]
         [SerializeField] private Transform entitiesParent;
         
         private void Start()
