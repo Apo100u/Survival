@@ -10,7 +10,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [SerializeField] private KeyCode rightMovement    = KeyCode.D;
         [SerializeField] private KeyCode leftMovement     = KeyCode.A;
 
-        public Vector3 GetMovementInput()
+        public Vector3 GetNormalizedMovementInput()
         {
             Vector3 movementInput = new();
 
@@ -34,7 +34,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
                 movementInput.x -= 1.0f;
             }
 
-            return movementInput;
+            return movementInput.normalized;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
         
         public void Move(Vector3 direction)
         {
-            transform.position += direction.normalized * speed;
+            transform.position += direction * speed;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SurvivalGame.Gameplay.Entities
 
         private void Update()
         {
-            movement.Move(input.GetMovementInput());
+            movement.Move(input.GetNormalizedMovementInput() * Time.deltaTime);
         }
     }
 }
