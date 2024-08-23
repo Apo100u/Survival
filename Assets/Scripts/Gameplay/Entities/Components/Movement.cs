@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SurvivalGame.Entities
+namespace SurvivalGame.Gameplay.Entities.Components
 {
     public class Movement : MonoBehaviour
     {
