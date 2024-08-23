@@ -1,6 +1,6 @@
 {
-    "name": "Entities",
-    "rootNamespace": "SurvivalGame.Gameplay.Entities",
+    "name": "Gameplay",
+    "rootNamespace": "SurvivalGame.Gameplay",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
