@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a4a1b008602f53418438ea5563519ec, type: 3}
-  m_Name: Resource_Stone
+  m_Name: ItemData_Iron
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1992436870791039576, guid: fe668f2237ebff24f987fe257d376826, type: 3}
-  image: {fileID: 21300000, guid: 566d10dd74872c945bdc4d0846f15331, type: 3}
+  prefab: {fileID: 38098942864319062, guid: 3a7dfaa17763563459a8c43a40aa4827, type: 3}
+  image: {fileID: 21300000, guid: a74567693aec8554595fb9f52ae7ca88, type: 3}
