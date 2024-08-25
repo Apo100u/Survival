@@ -9,10 +9,5 @@ namespace SurvivalGame.ScriptableObjects
         [SerializeField] private GameObject prefab;
         [Tooltip("Image of the resource shown in UI.")]
         [SerializeField] private Sprite image;
-
-        public int GetId()
-        {
-            return GetHashCode();
-        }
     }
 }
