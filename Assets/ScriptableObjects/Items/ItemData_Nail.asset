@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ItemData_Nail
   m_EditorClassIdentifier: 
   displayName: Nail
-  prefab: {fileID: 38098942864319062, guid: 3a7dfaa17763563459a8c43a40aa4827, type: 3}
+  prefab: {fileID: 2951761278341639907, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
   image: {fileID: 21300000, guid: 20829fac2523a1e4fb94813a5a7b389b, type: 3}

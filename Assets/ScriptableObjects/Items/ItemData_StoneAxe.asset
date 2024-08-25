@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4a1b008602f53418438ea5563519ec, type: 3}
   m_Name: ItemData_StoneAxe
   m_EditorClassIdentifier: 
-  displayName: Wooden Axe
+  displayName: Stone Axe
   prefab: {fileID: 7165307038916286229, guid: 828ac4770ce003c4a8ac34677a95665b, type: 3}
   image: {fileID: 21300000, guid: cbe6b9b1e2e339c4cb18a67353c2255b, type: 3}
