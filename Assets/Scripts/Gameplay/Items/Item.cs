@@ -12,5 +12,10 @@ namespace SurvivalGame.Gameplay.Items
         {
             gameObject.SetActive(false);
         }
+
+        public string GetInteractionMessage()
+        {
+            return "Pick up";
+        }
     }
 }
