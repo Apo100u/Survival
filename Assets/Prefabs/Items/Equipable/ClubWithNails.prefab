@@ -389,7 +389,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -463,7 +465,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -537,7 +541,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -611,7 +617,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -685,7 +693,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -759,7 +769,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -833,7 +845,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -907,7 +921,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -981,7 +997,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1055,7 +1073,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1129,7 +1149,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1203,7 +1225,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8964787110060862113, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
+    - {fileID: 8477231108115040898, guid: 02e1517243e6d6147aa52b327212f22f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

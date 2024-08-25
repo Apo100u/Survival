@@ -1,33 +1,72 @@
+using System.Collections.Generic;
 using UnityEngine;
 using SurvivalGame.Gameplay.Helpers;
+using SurvivalGame.Gameplay.Interactions;
 
 namespace SurvivalGame.Gameplay.Entities.Components
 {
     public class InteractionHandler : MonoBehaviour
     {
-        [Header("Collider to search for interactables.")]
-        [SerializeField] private TriggerCallbackDispatcher triggerCallbackDispatcher;
-        
-        
+        [Tooltip("Collider to search for interactables.")]
+        [SerializeField] private TriggerCallbackDispatcher interactionRange;
+
+        private GameObject closestInteractable;
+        private List<GameObject> interactablesInRange = new();
 
         private void OnEnable()
         {
-            triggerCallbackDispatcher.TriggerEntered += OnInteractionTriggerEntered;
-            triggerCallbackDispatcher.TriggerExited += OnInteractionTriggerExited;
+            interactionRange.TriggerEntered += OnInteractionTriggerEntered;
+            interactionRange.TriggerExited += OnInteractionTriggerExited;
         }
 
         private void OnDisable()
         {
-            triggerCallbackDispatcher.TriggerEntered -= OnInteractionTriggerEntered;
-            triggerCallbackDispatcher.TriggerExited -= OnInteractionTriggerExited;
+            interactionRange.TriggerEntered -= OnInteractionTriggerEntered;
+            interactionRange.TriggerExited -= OnInteractionTriggerExited;
+        }
+
+        private void Update()
+        {
+            UpdateClosestInteractable();
+        }
+
+        private void UpdateClosestInteractable()
+        {
+            closestInteractable = null;
+            float closestDistance = float.MaxValue;
+            
+            for (int i = 0; i < interactablesInRange.Count; i++)
+            {
+                GameObject interactable = interactablesInRange[i];
+
+                float sqrDistance = Vector3.SqrMagnitude(transform.position - interactable.transform.position);
+                
+                if (sqrDistance < closestDistance)
+                {
+                    closestDistance = sqrDistance;
+                    closestInteractable = interactable;
+                }
+            }
         }
 
         private void OnInteractionTriggerEntered(Collider other)
         {
+            IInteractable interactable = other.GetComponent<IInteractable>();
+
+            if (interactable != null)
+            {
+                interactablesInRange.Add(other.gameObject);
+            }
         }
 
         private void OnInteractionTriggerExited(Collider other)
         {
+            IInteractable interactable = other.GetComponent<IInteractable>();
+
+            if (interactable != null)
+            {
+                interactablesInRange.Remove(other.gameObject);
+            }
         }
 
         public void TryInteractWithClosestInteractable()
