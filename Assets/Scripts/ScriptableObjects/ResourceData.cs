@@ -7,6 +7,7 @@ namespace SurvivalGame.ScriptableObjects
     {
         [Tooltip("GameObject of the resource that appears in the game world.")]
         [SerializeField] private GameObject prefab;
+        
         [Tooltip("Image of the resource shown in UI.")]
         [SerializeField] private Sprite image;
     }
