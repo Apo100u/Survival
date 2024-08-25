@@ -40,6 +40,11 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
             return movementInput.normalized;
         }
+
+        public bool GetInteractionDown()
+        {
+            return UnityEngine.Input.GetKeyDown(interact);
+        }
         
         public Vector3 GetAimWorldPosition(Camera camera)
         {

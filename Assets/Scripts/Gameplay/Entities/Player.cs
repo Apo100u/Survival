@@ -4,9 +4,8 @@ using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
 namespace SurvivalGame.Gameplay.Entities
 {
-    [RequireComponent(typeof(Input))]
-    [RequireComponent(typeof(Movement))]
-    [RequireComponent(typeof(Equipment))]
+    [RequireComponent(typeof(Input), typeof(Movement), typeof(Equipment))]
+    [RequireComponent(typeof(InteractionHandler))]
     public class Player : Entity
     {
         [Header("Player Dependencies")]
@@ -15,6 +14,7 @@ namespace SurvivalGame.Gameplay.Entities
         private Input input;
         private Movement movement;
         private Equipment equipment;
+        private InteractionHandler interactionHandler;
         
         public override void Init()
         {
@@ -23,15 +23,26 @@ namespace SurvivalGame.Gameplay.Entities
 
         private void AssignComponents()
         {
-            input = GetComponent<Input>();
-            movement = GetComponent<Movement>();
-            equipment = GetComponent<Equipment>();
+            input              = GetComponent<Input>();
+            movement           = GetComponent<Movement>();
+            equipment          = GetComponent<Equipment>();
+            interactionHandler = GetComponent<InteractionHandler>();
         }
 
         private void Update()
         {
-            movement.Move(input.GetNormalizedMovementInput() * Time.deltaTime);
+            ProcessInputActions();
             UpdateVisualsLookAt(input.GetAimWorldPosition(mainCamera));
+        }
+
+        private void ProcessInputActions()
+        {
+            movement.Move(input.GetNormalizedMovementInput() * Time.deltaTime);
+
+            if (input.GetInteractionDown())
+            {
+                interactionHandler.TryInteractWithClosestInteractable();
+            }
         }
     }
 }
