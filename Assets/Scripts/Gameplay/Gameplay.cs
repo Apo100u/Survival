@@ -1,4 +1,5 @@
 using SurvivalGame.Gameplay.Entities;
+using SurvivalGame.Gameplay.Items;
 using UnityEngine;
 
 namespace SurvivalGame.Gameplay

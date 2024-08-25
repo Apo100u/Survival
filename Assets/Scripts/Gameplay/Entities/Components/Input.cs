@@ -12,6 +12,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [SerializeField] private KeyCode backwardMovement = KeyCode.S;
         [SerializeField] private KeyCode rightMovement    = KeyCode.D;
         [SerializeField] private KeyCode leftMovement     = KeyCode.A;
+        [SerializeField] private KeyCode interact         = KeyCode.E;
 
         public Vector3 GetNormalizedMovementInput()
         {

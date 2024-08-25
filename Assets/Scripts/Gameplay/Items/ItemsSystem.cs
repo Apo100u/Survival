@@ -3,7 +3,7 @@ using SurvivalGame.CustomDataStructures.OutputTree;
 using SurvivalGame.ScriptableObjects;
 using UnityEngine;
 
-namespace SurvivalGame.Gameplay
+namespace SurvivalGame.Gameplay.Items
 {
     public class ItemsSystem : MonoBehaviour
     {
