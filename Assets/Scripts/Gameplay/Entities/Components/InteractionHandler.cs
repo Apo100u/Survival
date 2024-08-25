@@ -71,7 +71,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
         public void TryInteractWithClosestInteractable()
         {
-            
+            closestInteractable?.GetComponent<IInteractable>().Interact();
         }
     }
 }
