@@ -6,11 +6,13 @@ namespace SurvivalGame.Gameplay
     public class Gameplay : MonoBehaviour
     {
         [Header("Dependencies")]
+        [SerializeField] private ItemsSystem itemsSystem;
         [Tooltip("GameObject that holds all entities in the scene - used for easier searching.")]
         [SerializeField] private Transform entitiesParent;
         
         private void Start()
         {
+            itemsSystem.Init();
             InitEntities();
         }
 
