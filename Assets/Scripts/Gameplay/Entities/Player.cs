@@ -4,15 +4,17 @@ using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
 namespace SurvivalGame.Gameplay.Entities
 {
-    [RequireComponent(typeof(Movement))]
     [RequireComponent(typeof(Input))]
+    [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(Equipment))]
     public class Player : Entity
     {
         [Header("Player Dependencies")]
         [SerializeField] private Camera mainCamera;
         
-        private Movement movement;
         private Input input;
+        private Movement movement;
+        private Equipment equipment;
         
         public override void Init()
         {
@@ -21,8 +23,9 @@ namespace SurvivalGame.Gameplay.Entities
 
         private void AssignComponents()
         {
-            movement = GetComponent<Movement>();
             input = GetComponent<Input>();
+            movement = GetComponent<Movement>();
+            equipment = GetComponent<Equipment>();
         }
 
         private void Update()
