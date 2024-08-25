@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a4a1b008602f53418438ea5563519ec, type: 3}
-  m_Name: ItemData_Wood
+  m_Name: ItemData_Iron
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5797139023686717441, guid: 78e6330183ada934b8d4ee3afd24e186, type: 3}
-  image: {fileID: 21300000, guid: c35adc56015be0945ab17180d9000a3e, type: 3}
+  displayName: Iron
+  prefab: {fileID: 38098942864319062, guid: 3a7dfaa17763563459a8c43a40aa4827, type: 3}
+  image: {fileID: 21300000, guid: a74567693aec8554595fb9f52ae7ca88, type: 3}
