@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2585530778448761933}
   m_Layer: 0
-  m_Name: WoodenAxe
+  m_Name: StoneAxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
