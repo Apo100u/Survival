@@ -2,7 +2,8 @@
     "name": "Gameplay",
     "rootNamespace": "SurvivalGame.Gameplay",
     "references": [
-        "GUID:a0ad45efc7c899d4989dd358f6928fe4"
+        "GUID:a0ad45efc7c899d4989dd358f6928fe4",
+        "GUID:e58e1b94a1685684aa07194cd4d6d230"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

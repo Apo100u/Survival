@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using System;
+using SurvivalGame.CustomDataStructures.OutputTree;
 using SurvivalGame.ScriptableObjects;
 using UnityEngine;
 
@@ -6,30 +7,39 @@ namespace SurvivalGame.Gameplay
 {
     public class ItemsSystem : MonoBehaviour
     {
+        [Header("Game Data")]
         [Tooltip("Assign all items that are available in the game.")]
         [SerializeField] private ItemData[] items;
+        [Tooltip("Assign all recipes that are available in the game.")]
+        [SerializeField] private RecipeData[] recipes;
 
-        private Dictionary<int, ItemData> itemDatasByUniqueId = new();
-        private int nextUniqueId;
+        private OutputTree<int> recipeTree;
         
         public void Init()
         {
             AssignUniqueIdsToItems();
+            CreateRecipeTree();
         }
 
         private void AssignUniqueIdsToItems()
         {
-            nextUniqueId = int.MinValue;
-
             for (int i = 0; i < items.Length; i++)
             {
-                itemDatasByUniqueId.Add(MoveNextUniqueId(), items[i]);
+                items[i].AssignUniqueId(i);
             }
         }
 
-        private int MoveNextUniqueId()
+        private void CreateRecipeTree()
         {
-            return ++nextUniqueId;
+            recipeTree = new OutputTree<int>();
+
+            for (int i = 0; i < recipes.Length; i++)
+            {
+                int[] ingredientsUniqueIds = recipes[i].GetIngredientsUniqueIds();
+                Array.Sort(ingredientsUniqueIds);
+
+                recipeTree.AddBranch(ingredientsUniqueIds, recipes[i].SuccessfulOutput.UniqueId);
+            }
         }
     }
 }

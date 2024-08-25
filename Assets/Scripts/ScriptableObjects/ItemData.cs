@@ -13,5 +13,12 @@ namespace SurvivalGame.ScriptableObjects
         
         [Tooltip("Image of the resource shown in UI.")]
         [SerializeField] private Sprite image;
+        
+        public int UniqueId { get; private set; }
+
+        public void AssignUniqueId(int uniqueId)
+        {
+            UniqueId = uniqueId;
+        }
     }
 }

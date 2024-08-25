@@ -15,5 +15,5 @@ MonoBehaviour:
   ingredients:
   - {fileID: 11400000, guid: d38d8d17aaf969b4cb791e81d9d87bf7, type: 2}
   - {fileID: 11400000, guid: 80357fdedfd5ef84f819dce9ddb4e67f, type: 2}
-  successfulOutput: {fileID: 11400000, guid: 948a608e7c6f1ef42b1dda1cd9429418, type: 2}
+  <SuccessfulOutput>k__BackingField: {fileID: 11400000, guid: 948a608e7c6f1ef42b1dda1cd9429418, type: 2}
   successChance: 0.2
