@@ -31,7 +31,19 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
         private void Update()
         {
+            RemoveInactiveInteractablesInRage();
             UpdateClosestInteractable();
+        }
+
+        private void RemoveInactiveInteractablesInRage()
+        {
+            for (int i = interactablesInRange.Count - 1; i >= 0; i--)
+            {
+                if (!interactablesInRange[i].activeSelf)
+                {
+                    interactablesInRange.RemoveAt(i);
+                }
+            }
         }
 
         private void UpdateClosestInteractable()
