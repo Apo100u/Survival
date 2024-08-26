@@ -13,6 +13,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [SerializeField] private KeyCode rightMovement    = KeyCode.D;
         [SerializeField] private KeyCode leftMovement     = KeyCode.A;
         [SerializeField] private KeyCode interact         = KeyCode.E;
+        [SerializeField] private KeyCode inventory        = KeyCode.I;
 
         public KeyCode InteractKey => interact;
 
@@ -46,6 +47,11 @@ namespace SurvivalGame.Gameplay.Entities.Components
         public bool GetInteractionDown()
         {
             return UnityEngine.Input.GetKeyDown(interact);
+        }
+        
+        public bool GetInventoryDown()
+        {
+            return UnityEngine.Input.GetKeyDown(inventory);
         }
         
         public Vector3 GetAimWorldPosition(Camera camera)

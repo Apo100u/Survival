@@ -67,6 +67,11 @@ namespace SurvivalGame.Gameplay.Entities
             {
                 interactionHandler.TryInteractWithClosestInteractable();
             }
+
+            if (input.GetInventoryDown())
+            {
+                hud.PlayerInventoryWidget.ToggleShow();
+            }
         }
         
         private void OnInteractionExecuted(InteractionExecutedEventArgs args)

@@ -13,7 +13,7 @@ namespace SurvivalGame.UI.Widgets
         private RectTransform area;
         private Transform transformToFollow;
         
-        public void Init(Camera camera, RectTransform area)
+        public virtual void Init(Camera camera, RectTransform area)
         {
             mainCamera = camera;
             this.area = area;
@@ -28,7 +28,12 @@ namespace SurvivalGame.UI.Widgets
             }
         }
 
-        public void Show(bool show)
+        public void ToggleShow()
+        {
+            Show(!gameObject.activeSelf);
+        }
+
+        public virtual void Show(bool show)
         {
             gameObject.SetActive(show);
         }

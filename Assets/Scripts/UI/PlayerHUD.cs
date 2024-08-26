@@ -7,12 +7,14 @@ namespace SurvivalGame.UI
     {
         [field: Header("Dependencies")]
         [field: SerializeField] public TooltipWidget TooltipWidget { get; private set; }
+        [field: SerializeField] public PlayerInventoryWidget PlayerInventoryWidget { get; private set; }
         
         public void Init(Camera camera)
         {
             RectTransform rectTransform = GetComponent<RectTransform>();
             
             TooltipWidget.Init(camera, rectTransform);
+            PlayerInventoryWidget.Init(camera, rectTransform);
         }
     }
 }

@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <TooltipWidget>k__BackingField: {fileID: 6755310288151047493}
+  <PlayerInventoryWidget>k__BackingField: {fileID: 164154616222134784}
 --- !u!1001 &951421720682800405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -538,6 +539,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4805998a1e09a479a6f95154ddc9e3, type: 3}
+--- !u!114 &164154616222134784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1113251964353419029, guid: 9a4805998a1e09a479a6f95154ddc9e3, type: 3}
+  m_PrefabInstance: {fileID: 951421720682800405}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2153b1137578347871d117bbbc56d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2025522081685287507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1236300330169014086, guid: 9a4805998a1e09a479a6f95154ddc9e3, type: 3}

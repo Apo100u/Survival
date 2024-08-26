@@ -1293,10 +1293,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2025522081685287507, guid: 247b809d81260da4298db955a98c2982, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -52.099976
-      objectReference: {fileID: 0}
     - target: {fileID: 3003386781549922961, guid: 247b809d81260da4298db955a98c2982, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1447,6 +1443,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4022310554170766281, guid: 247b809d81260da4298db955a98c2982, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042393208481943945, guid: 247b809d81260da4298db955a98c2982, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4132347062616233236, guid: 247b809d81260da4298db955a98c2982, type: 3}
