@@ -43,7 +43,7 @@ namespace SurvivalGame.Gameplay.Items
                 int[] ingredientsUniqueIds = recipes[i].GetIngredientsUniqueIds();
                 Array.Sort(ingredientsUniqueIds);
 
-                recipeTreeByUniqueIds.AddBranch(ingredientsUniqueIds, recipes[i].SuccessfulOutput.UniqueId);
+                recipeTreeByUniqueIds.AddBranch(ingredientsUniqueIds, recipes[i].UniqueId);
             }
         }
     }
