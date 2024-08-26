@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visuals: {fileID: 1369327993787992758}
   mainCamera: {fileID: 6851880248670719013}
+  hud: {fileID: 0}
 --- !u!114 &3899920699327586133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   rightMovement: 100
   leftMovement: 97
   interact: 101
+  inventory: 105
 --- !u!114 &3475271929881136207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25ab220792b7aa42907ec124b050ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropRange: 2
 --- !u!114 &2184537718997832270
 MonoBehaviour:
   m_ObjectHideFlags: 0

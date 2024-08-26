@@ -6,6 +6,7 @@ using SurvivalGame.Gameplay.Helpers;
 using SurvivalGame.Gameplay.Interactions;
 using SurvivalGame.Gameplay.Items;
 using SurvivalGame.UI;
+using SurvivalGame.UI.Widgets;
 using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
 namespace SurvivalGame.Gameplay.Entities
@@ -25,6 +26,8 @@ namespace SurvivalGame.Gameplay.Entities
         
         public override void Init(ObjectPools objectPools)
         {
+            base.Init(objectPools);
+            
             AssignComponents();
             hud.Init(mainCamera);
         }
@@ -46,12 +49,14 @@ namespace SurvivalGame.Gameplay.Entities
             
             interactionHandler.InteractionExecuted += OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged += OnClosestInteractableChanged;
+            hud.PlayerInventoryWidget.SlotInteracted += OnInventorySlotInteracted;
         }
 
         private void OnDisable()
         {
             interactionHandler.InteractionExecuted -= OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged -= OnClosestInteractableChanged;
+            hud.PlayerInventoryWidget.SlotInteracted -= OnInventorySlotInteracted;
         }
 
         private void Update()
@@ -90,6 +95,16 @@ namespace SurvivalGame.Gameplay.Entities
                 }
                 
                 objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
+            }
+        }
+        
+        private void OnInventorySlotInteracted(InventorySlotInteractedEventArgs args)
+        {
+            if (args.ItemInSlotData)
+            {
+                inventory.DropItem(args.ItemInSlotData, objectPools);
+                
+                UpdateInventoryWidget();
             }
         }
 

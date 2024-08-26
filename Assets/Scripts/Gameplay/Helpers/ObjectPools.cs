@@ -17,6 +17,8 @@ namespace SurvivalGame.Gameplay.Helpers
 
         public void ReturnToPool(GameObject prefab, GameObject gameObject)
         {
+            EnsurePoolExists(prefab);
+            
             poolsByPrefabs[prefab].Release(gameObject);
         }
 

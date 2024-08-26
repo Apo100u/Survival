@@ -36,17 +36,26 @@ namespace SurvivalGame.UI.Widgets
 
         public void ShowItems(IList<ItemData> items)
         {
-            for (int i = 0; i < items.Count; i++)
+            if (items.Count > slotsInOrder.Length)
+            {
+                Debug.Log("TODO: Handle case when there is more items to show than slots in InventoryWidget.");
+            }
+            
+            for (int i = 0; i < slotsInOrder.Length; i++)
             {
                 SlotWidget slot = slotsInOrder[i];
-                ItemData itemData = items[i];
                 
-                slot.SetDisplayImage(itemData.Image);
-                itemsBySlots[slot] = itemData;
-
-                if (i >= slotsInOrder.Length)
+                if (i < items.Count)
                 {
-                    Debug.Log("TODO: Handle case when inventory has more items than there are slots in inventory widget");
+                    ItemData itemData = items[i];
+
+                    slot.SetDisplayImage(itemData.Image);
+                    itemsBySlots[slot] = itemData;
+                }
+                else
+                {
+                    slot.SetDisplayImage(null);
+                    itemsBySlots[slot] = null;
                 }
             }
         }
