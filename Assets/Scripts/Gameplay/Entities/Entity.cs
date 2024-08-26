@@ -7,18 +7,13 @@ namespace SurvivalGame.Gameplay.Entities
     {
         [Header("Entity Dependencies")]
         [Tooltip("Visual representation of the entity (mesh, particles, etc.).")]
-        [SerializeField] private Transform visuals;
+        [SerializeField] protected Transform visuals;
 
         protected ObjectPools objectPools;
         
         public virtual void Init(ObjectPools objectPools)
         {
             this.objectPools = objectPools;
-        }
-
-        protected void UpdateVisualsLookAt(Vector3 lookAtWorldPosition)
-        {
-            visuals.LookAt(lookAtWorldPosition);
         }
     }
 }
