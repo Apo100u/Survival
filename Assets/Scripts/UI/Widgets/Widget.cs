@@ -40,9 +40,7 @@ namespace SurvivalGame.UI.Widgets
 
         private void FollowAssignedTransform()
         {
-            Vector3 screenPosition = mainCamera.WorldToScreenPoint(transformToFollow.position);
-            screenPosition += transformFollowOffset;
-            
+            Vector3 screenPosition = mainCamera.WorldToScreenPoint(transformToFollow.position) + transformFollowOffset;
             Vector2 adjustedPosition = new(screenPosition.x / Screen.width * area.sizeDelta.x, screenPosition.y / Screen.height * area.sizeDelta.y);
             
             rectTransform.anchoredPosition = adjustedPosition;

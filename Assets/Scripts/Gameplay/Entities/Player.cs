@@ -1,5 +1,8 @@
+using System;
+using System.Text;
 using UnityEngine;
 using SurvivalGame.Gameplay.Entities.Components;
+using SurvivalGame.Gameplay.Interactions;
 using SurvivalGame.UI;
 using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
@@ -69,8 +72,19 @@ namespace SurvivalGame.Gameplay.Entities
             
             if (args.NewClosestInteractable)
             {
-                hud.TooltipWidget.SetTransformToFollow(args.NewClosestInteractable.transform);
+                UpdateInteractableTooltip(args.NewClosestInteractable);
             }
+        }
+
+        private void UpdateInteractableTooltip(GameObject interactable)
+        {
+            StringBuilder message = new(interactable.name);
+            message.Append(Environment.NewLine);
+            message.Append($"[{input.InteractKey}] - ");
+            message.Append(interactable.GetComponent<IInteractable>().GetInteractionMessage());
+
+            hud.TooltipWidget.SetTransformToFollow(interactable.transform);
+            hud.TooltipWidget.UpdateText(message.ToString());
         }
     }
 }

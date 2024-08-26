@@ -14,6 +14,8 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [SerializeField] private KeyCode leftMovement     = KeyCode.A;
         [SerializeField] private KeyCode interact         = KeyCode.E;
 
+        public KeyCode InteractKey => interact;
+
         public Vector3 GetNormalizedMovementInput()
         {
             Vector3 movementInput = new();
