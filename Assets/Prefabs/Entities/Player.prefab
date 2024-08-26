@@ -155,6 +155,7 @@ MonoBehaviour:
   visuals: {fileID: 1369327993787992758}
   mainCamera: {fileID: 6851880248670719013}
   hud: {fileID: 0}
+  cameraTransitionSpeed: 50
   exploringCameraTarget: {fileID: 7253910956016365232}
   craftingCameraTarget: {fileID: 7978720289341272109}
 --- !u!114 &3899920699327586133

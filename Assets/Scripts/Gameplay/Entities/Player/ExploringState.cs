@@ -37,7 +37,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             base.Process();
             
             ProcessInputActions();
-            UpdateVisualsLookAt(input.GetAimWorldPosition(mainCamera));
+            visuals.LookAt(input.GetAimWorldPosition(mainCamera));
         }
         
         private void ProcessInputActions()
@@ -104,11 +104,6 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             hud.TooltipWidget.SetTransformToFollow(interactable.transform);
             hud.TooltipWidget.UpdateText(message.ToString());
-        }
-        
-        private void UpdateVisualsLookAt(Vector3 lookAtWorldPosition)
-        {
-            visuals.LookAt(lookAtWorldPosition);
         }
         
         private void UpdateInventoryWidget()

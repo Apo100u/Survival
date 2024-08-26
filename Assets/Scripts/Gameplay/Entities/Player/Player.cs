@@ -16,6 +16,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
         [SerializeField] private PlayerHUD hud;
 
         [Header("Player Camera settings")]
+        [SerializeField] private float cameraTransitionSpeed = 100.0f;
         [SerializeField] private Transform exploringCameraTarget;
         [SerializeField] private Transform craftingCameraTarget;
         
@@ -49,14 +50,15 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void CreatePlayerDependencies()
         {
             playerDependencies = new PlayerDependencies(
-                visuals:            visuals,
-                movement:           GetComponent<Movement>(),
-                interactionHandler: GetComponent<InteractionHandler>(),
-                inventory:          GetComponent<Inventory>(),
-                input:              GetComponent<Input>(),
-                hud:                hud,
-                mainCamera:         mainCamera,
-                objectPools:        objectPools);
+                visuals:               visuals,
+                movement:              GetComponent<Movement>(),
+                interactionHandler:    GetComponent<InteractionHandler>(),
+                inventory:             GetComponent<Inventory>(),
+                input:                 GetComponent<Input>(),
+                hud:                   hud,
+                mainCamera:            mainCamera,
+                objectPools:           objectPools,
+                cameraTransitionSpeed: cameraTransitionSpeed);
         }
 
         private void SetUpStateMachine()

@@ -16,9 +16,10 @@ namespace SurvivalGame.Gameplay.Entities.Player
         public readonly PlayerHUD Hud;
         public readonly Camera MainCamera;
         public readonly ObjectPools ObjectPools;
+        public readonly float CameraTransitionSpeed;
 
         public PlayerDependencies(Transform visuals, Movement movement, InteractionHandler interactionHandler, Inventory inventory, Input input, PlayerHUD hud,
-            Camera mainCamera, ObjectPools objectPools)
+            Camera mainCamera, ObjectPools objectPools, float cameraTransitionSpeed)
         {
             Visuals = visuals;
             Movement = movement;
@@ -28,6 +29,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             Hud = hud;
             MainCamera = mainCamera;
             ObjectPools = objectPools;
+            CameraTransitionSpeed = cameraTransitionSpeed;
         }
     }
 }

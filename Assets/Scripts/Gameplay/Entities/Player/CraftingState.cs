@@ -4,8 +4,6 @@ namespace SurvivalGame.Gameplay.Entities.Player
 {
     public class CraftingState : PlayerState
     {
-        private Transform visuals;
-
         public CraftingState(PlayerDependencies playerDependencies, Transform cameraTarget) : base(playerDependencies, cameraTarget)
         {
         }
