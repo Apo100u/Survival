@@ -11,7 +11,7 @@ namespace SurvivalGame.Gameplay
         [Tooltip("GameObject that holds all entities in the scene - used for easier searching.")]
         [SerializeField] private Transform entitiesParent;
         
-        private void Start()
+        private void Awake()
         {
             itemsSystem.Init();
             InitEntities();

@@ -1,5 +1,6 @@
 using UnityEngine;
 using SurvivalGame.Gameplay.Entities.Components;
+using SurvivalGame.UI;
 using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
 namespace SurvivalGame.Gameplay.Entities
@@ -10,6 +11,7 @@ namespace SurvivalGame.Gameplay.Entities
     {
         [Header("Player Dependencies")]
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private PlayerHUD hud;
         
         private Input input;
         private Movement movement;
@@ -29,6 +31,21 @@ namespace SurvivalGame.Gameplay.Entities
             interactionHandler = GetComponent<InteractionHandler>();
         }
 
+        private void OnEnable()
+        {
+            if (!interactionHandler)
+            {
+                interactionHandler = GetComponent<InteractionHandler>();
+            }
+            
+            interactionHandler.ClosestInteractableChanged += OnClosestInteractableChanged;
+        }
+
+        private void OnDisable()
+        {
+            interactionHandler.ClosestInteractableChanged -= OnClosestInteractableChanged;
+        }
+
         private void Update()
         {
             ProcessInputActions();
@@ -43,6 +60,10 @@ namespace SurvivalGame.Gameplay.Entities
             {
                 interactionHandler.TryInteractWithClosestInteractable();
             }
+        }
+
+        private void OnClosestInteractableChanged(ClosestInteractableChangedEventArgs args)
+        {
         }
     }
 }

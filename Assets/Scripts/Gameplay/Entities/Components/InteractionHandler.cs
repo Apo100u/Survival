@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SurvivalGame.Gameplay.Helpers;
@@ -10,6 +11,9 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [Tooltip("Collider to search for interactables.")]
         [SerializeField] private TriggerCallbackDispatcher interactionRange;
 
+        public event Action<ClosestInteractableChangedEventArgs> ClosestInteractableChanged;
+
+        private GameObject previousClosestInteractable;
         private GameObject closestInteractable;
         private List<GameObject> interactablesInRange = new();
 
@@ -45,8 +49,17 @@ namespace SurvivalGame.Gameplay.Entities.Components
                 {
                     closestDistance = sqrDistance;
                     closestInteractable = interactable;
+
                 }
             }
+            
+            if (closestInteractable != previousClosestInteractable)
+            {
+                ClosestInteractableChanged?.Invoke(new ClosestInteractableChangedEventArgs(closestInteractable));
+                Debug.Log(closestInteractable ? closestInteractable.name : "null");
+            }
+            
+            previousClosestInteractable = closestInteractable;
         }
 
         private void OnInteractionTriggerEntered(Collider other)
@@ -72,6 +85,16 @@ namespace SurvivalGame.Gameplay.Entities.Components
         public void TryInteractWithClosestInteractable()
         {
             closestInteractable?.GetComponent<IInteractable>().Interact();
+        }
+    }
+
+    public class ClosestInteractableChangedEventArgs
+    {
+        public readonly GameObject NewClosestInteractable;
+
+        public ClosestInteractableChangedEventArgs(GameObject newClosestInteractable)
+        {
+            NewClosestInteractable = newClosestInteractable;
         }
     }
 }
