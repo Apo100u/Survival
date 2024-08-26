@@ -1,4 +1,5 @@
 using SurvivalGame.Gameplay.Entities;
+using SurvivalGame.Gameplay.Helpers;
 using SurvivalGame.Gameplay.Items;
 using UnityEngine;
 
@@ -8,8 +9,9 @@ namespace SurvivalGame.Gameplay
     {
         [Header("Dependencies")]
         [SerializeField] private ItemsSystem itemsSystem;
-        [Tooltip("GameObject that holds all entities in the scene - used for easier searching.")]
+        [SerializeField] private ObjectPools objectPools;
         [SerializeField] private Transform entitiesParent;
+        [SerializeField] private Transform resourcesParent;
         
         private void Awake()
         {
