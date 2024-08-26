@@ -15,6 +15,10 @@ namespace SurvivalGame.Gameplay.Entities.Player
         [SerializeField] private Camera mainCamera;
         [SerializeField] private PlayerHUD hud;
 
+        [Header("Player Camera settings")]
+        [SerializeField] private Transform exploringCameraTarget;
+        [SerializeField] private Transform craftingCameraTarget;
+        
         private StateMachine<PlayerStateMachineCommand, State<PlayerStateMachineCommand>> stateMachine;
         private PlayerDependencies playerDependencies;
         
@@ -30,6 +34,16 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void Update()
         {
             stateMachine.Process();
+
+            // Testing - remove after test!
+            if (UnityEngine.Input.GetKeyDown(KeyCode.P))
+            {
+                stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestCrafting);
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.L))
+            {
+                stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestExploring);
+            }
         }
 
         private void CreatePlayerDependencies()
@@ -49,10 +63,14 @@ namespace SurvivalGame.Gameplay.Entities.Player
         {
             stateMachine = new StateMachine<PlayerStateMachineCommand, State<PlayerStateMachineCommand>>();
 
-            ExploringState exploringState = new(playerDependencies);
+            ExploringState exploringState = new(playerDependencies, exploringCameraTarget);
             exploringState.AddTransition<CraftingState>(PlayerStateMachineCommand.RequestCrafting);
 
+            CraftingState craftingState = new(playerDependencies, craftingCameraTarget);
+            craftingState.AddTransition<ExploringState>(PlayerStateMachineCommand.RequestExploring);
+
             stateMachine.AddState(exploringState);
+            stateMachine.AddState(craftingState);
             
             stateMachine.Start(exploringState);
         }

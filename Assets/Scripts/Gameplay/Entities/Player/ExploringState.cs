@@ -1,40 +1,19 @@
 using System;
 using System.Text;
 using SurvivalGame.Gameplay.Entities.Components;
-using SurvivalGame.Gameplay.Helpers;
-using SurvivalGame.Gameplay.Helpers.StateMachine;
 using SurvivalGame.Gameplay.Interactions;
 using SurvivalGame.Gameplay.Items;
-using SurvivalGame.UI;
 using SurvivalGame.UI.Widgets;
 using UnityEngine;
-using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
 namespace SurvivalGame.Gameplay.Entities.Player
 {
-    public class ExploringState : State<PlayerStateMachineCommand>
+    public class ExploringState : PlayerState
     {
-        private Transform visuals;
-        private Movement movement;
-        private InteractionHandler interactionHandler;
-        private Inventory inventory;
-        private Input input;
-        private PlayerHUD hud;
-        private Camera mainCamera;
-        private ObjectPools objectPools;
-
-        public ExploringState(PlayerDependencies playerDependencies)
+        public ExploringState(PlayerDependencies playerDependencies, Transform cameraTarget) : base(playerDependencies, cameraTarget)
         {
-            visuals            = playerDependencies.Visuals;
-            movement           = playerDependencies.Movement;
-            interactionHandler = playerDependencies.InteractionHandler;
-            hud                = playerDependencies.Hud;
-            inventory          = playerDependencies.Inventory;
-            input              = playerDependencies.Input;
-            mainCamera         = playerDependencies.MainCamera;
-            objectPools        = playerDependencies.ObjectPools;
         }
-
+        
         public override void OnEnter()
         {
             base.OnEnter();
@@ -127,7 +106,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             hud.TooltipWidget.UpdateText(message.ToString());
         }
         
-        protected void UpdateVisualsLookAt(Vector3 lookAtWorldPosition)
+        private void UpdateVisualsLookAt(Vector3 lookAtWorldPosition)
         {
             visuals.LookAt(lookAtWorldPosition);
         }
