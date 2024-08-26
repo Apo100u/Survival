@@ -6,6 +6,8 @@ namespace SurvivalGame.UI.Widgets
     {
         [Tooltip("Position offset to add when this widget is following a transform.")]
         [SerializeField] private Vector3 transformFollowOffset;
+
+        public bool IsShown => gameObject.activeSelf;
         
         protected RectTransform rectTransform;
 

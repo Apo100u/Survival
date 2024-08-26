@@ -71,7 +71,7 @@ namespace SurvivalGame.Gameplay.Entities
             if (input.GetInventoryDown())
             {
                 hud.PlayerInventoryWidget.ToggleShow();
-                hud.PlayerInventoryWidget.ShowItems(inventory.GetItems());
+                UpdateInventoryWidget();
             }
         }
         
@@ -82,6 +82,11 @@ namespace SurvivalGame.Gameplay.Entities
             if (item)
             {
                 inventory.AddItem(item.ItemData);
+
+                if (hud.PlayerInventoryWidget.IsShown)
+                {
+                    UpdateInventoryWidget();
+                }
             }
         }
 
@@ -106,6 +111,11 @@ namespace SurvivalGame.Gameplay.Entities
 
             hud.TooltipWidget.SetTransformToFollow(interactable.transform);
             hud.TooltipWidget.UpdateText(message.ToString());
+        }
+
+        private void UpdateInventoryWidget()
+        {
+            hud.PlayerInventoryWidget.ShowItems(inventory.GetItems());
         }
     }
 }
