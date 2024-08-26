@@ -3,6 +3,7 @@ using System.Text;
 using UnityEngine;
 using SurvivalGame.Gameplay.Entities.Components;
 using SurvivalGame.Gameplay.Interactions;
+using SurvivalGame.Gameplay.Items;
 using SurvivalGame.UI;
 using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
@@ -42,11 +43,13 @@ namespace SurvivalGame.Gameplay.Entities
                 interactionHandler = GetComponent<InteractionHandler>();
             }
             
+            interactionHandler.InteractionExecuted += OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged += OnClosestInteractableChanged;
         }
 
         private void OnDisable()
         {
+            interactionHandler.InteractionExecuted -= OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged -= OnClosestInteractableChanged;
         }
 
@@ -65,6 +68,16 @@ namespace SurvivalGame.Gameplay.Entities
                 interactionHandler.TryInteractWithClosestInteractable();
             }
         }
+        
+        private void OnInteractionExecuted(InteractionExecutedEventArgs args)
+        {
+            Item item = args.Interactable.GetComponent<Item>();
+
+            if (item)
+            {
+                equipment.AddItem(item.ItemData);
+            }
+        }
 
         private void OnClosestInteractableChanged(ClosestInteractableChangedEventArgs args)
         {
@@ -78,7 +91,9 @@ namespace SurvivalGame.Gameplay.Entities
 
         private void UpdateInteractableTooltip(GameObject interactable)
         {
-            StringBuilder message = new(interactable.name);
+            Item item = interactable.GetComponent<Item>();
+            
+            StringBuilder message = new(item ? item.ItemData.DisplayName : interactable.name);
             message.Append(Environment.NewLine);
             message.Append($"[{input.InteractKey}] - ");
             message.Append(interactable.GetComponent<IInteractable>().GetInteractionMessage());

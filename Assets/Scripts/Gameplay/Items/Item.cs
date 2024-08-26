@@ -6,7 +6,7 @@ namespace SurvivalGame.Gameplay.Items
 {
     public class Item : MonoBehaviour, IInteractable
     {
-        [SerializeField] private ItemData itemData;
+        [field: SerializeField] public ItemData ItemData { get; private set; }
         
         public void Interact()
         {

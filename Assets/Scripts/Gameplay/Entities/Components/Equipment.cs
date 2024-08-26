@@ -6,7 +6,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
 {
     public class Equipment : MonoBehaviour
     {
-        private Dictionary<ItemData, int> itemCountPairs;
+        private Dictionary<ItemData, int> itemCountPairs = new();
 
         public void AddItem(ItemData item)
         {

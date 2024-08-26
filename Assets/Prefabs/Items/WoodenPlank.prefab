@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3fcfc4fc2e1a74e88d2505facac136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: d38d8d17aaf969b4cb791e81d9d87bf7, type: 2}
+  <ItemData>k__BackingField: {fileID: 11400000, guid: d38d8d17aaf969b4cb791e81d9d87bf7, type: 2}
 --- !u!135 &5146869121609702535
 SphereCollider:
   m_ObjectHideFlags: 0

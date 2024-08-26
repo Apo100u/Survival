@@ -11,6 +11,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [Tooltip("Collider to search for interactables.")]
         [SerializeField] private TriggerCallbackDispatcher interactionRange;
 
+        public event Action<InteractionExecutedEventArgs> InteractionExecuted;
         public event Action<ClosestInteractableChangedEventArgs> ClosestInteractableChanged;
 
         private GameObject previousClosestInteractable;
@@ -95,7 +96,23 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
         public void TryInteractWithClosestInteractable()
         {
-            closestInteractable?.GetComponent<IInteractable>().Interact();
+            IInteractable interactable = closestInteractable?.GetComponent<IInteractable>();
+
+            if (interactable != null)
+            {
+                interactable.Interact();
+                InteractionExecuted?.Invoke(new InteractionExecutedEventArgs(closestInteractable));
+            }
+        }
+    }
+    
+    public class InteractionExecutedEventArgs
+    {
+        public readonly GameObject Interactable;
+
+        public InteractionExecutedEventArgs(GameObject interactable)
+        {
+            Interactable = interactable;
         }
     }
 
