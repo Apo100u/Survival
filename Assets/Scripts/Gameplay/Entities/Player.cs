@@ -64,6 +64,10 @@ namespace SurvivalGame.Gameplay.Entities
 
         private void OnClosestInteractableChanged(ClosestInteractableChangedEventArgs args)
         {
+            if (args.NewClosestInteractable)
+            {
+                
+            }
         }
     }
 }

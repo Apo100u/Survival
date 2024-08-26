@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SurvivalGame.UI.Widgets
 {
-    public class TooltipWidget : MonoBehaviour
+    public class TooltipWidget : Widget
     {
         [SerializeField] private TextMeshProUGUI text;
 

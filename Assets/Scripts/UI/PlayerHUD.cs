@@ -5,7 +5,7 @@ namespace SurvivalGame.UI
 {
     public class PlayerHUD : MonoBehaviour
     {
-        [Header("Dependencies")]
-        [SerializeField] private TooltipWidget tooltipWidget;
+        [field: Header("Dependencies")]
+        [field: SerializeField] public TooltipWidget TooltipWidget { get; private set; }
     }
 }

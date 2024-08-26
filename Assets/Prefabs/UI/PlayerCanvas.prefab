@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc077ea0dde37c479985cfeaec5a851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipWidget: {fileID: 6755310288151047493}
+  <TooltipWidget>k__BackingField: {fileID: 6755310288151047493}
 --- !u!1001 &1597294335089815960
 PrefabInstance:
   m_ObjectHideFlags: 0
