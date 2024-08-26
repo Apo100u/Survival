@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,11 +10,26 @@ namespace SurvivalGame.UI.Widgets
         [Header("Dependencies")]
         [SerializeField] private Image background;
         [SerializeField] private Image displayImage;
+        [SerializeField] private Button interactButton;
 
-        [Header("Dependencies")]
+        [Header("Settings")]
         [SerializeField] private Color defaultBackgroundColor = Color.white;
         [SerializeField] private Color highlightedBackgroundColor  = Color.white;
-        
+
+        public event Action<SlotInteractedEventArgs> Interacted;
+
+        public override void Init(Camera camera, RectTransform area)
+        {
+            base.Init(camera, area);
+            
+            interactButton.onClick.AddListener(OnInteractButtonClicked);
+        }
+
+        private void OnInteractButtonClicked()
+        {
+            Interacted?.Invoke(new SlotInteractedEventArgs(this));
+        }
+
         public void SetDisplayImage(Sprite sprite)
         {
             displayImage.gameObject.SetActive(sprite);
@@ -32,6 +48,16 @@ namespace SurvivalGame.UI.Widgets
         public void OnPointerExit(PointerEventData eventData)
         {
             background.color = defaultBackgroundColor;
+        }
+    }
+
+    public class SlotInteractedEventArgs
+    {
+        public readonly SlotWidget SlotWidget;
+
+        public SlotInteractedEventArgs(SlotWidget slotWidget)
+        {
+            SlotWidget = slotWidget;
         }
     }
 }
