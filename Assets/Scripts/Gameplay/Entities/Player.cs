@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using UnityEngine;
 using SurvivalGame.Gameplay.Entities.Components;
+using SurvivalGame.Gameplay.Helpers;
 using SurvivalGame.Gameplay.Interactions;
 using SurvivalGame.Gameplay.Items;
 using SurvivalGame.UI;
@@ -22,7 +23,7 @@ namespace SurvivalGame.Gameplay.Entities
         private Inventory inventory;
         private InteractionHandler interactionHandler;
         
-        public override void Init()
+        public override void Init(ObjectPools objectPools)
         {
             AssignComponents();
             hud.Init(mainCamera);
@@ -87,6 +88,8 @@ namespace SurvivalGame.Gameplay.Entities
                 {
                     UpdateInventoryWidget();
                 }
+                
+                objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
             }
         }
 

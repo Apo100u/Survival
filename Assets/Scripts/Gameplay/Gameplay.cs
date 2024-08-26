@@ -11,7 +11,6 @@ namespace SurvivalGame.Gameplay
         [SerializeField] private ItemsSystem itemsSystem;
         [SerializeField] private ObjectPools objectPools;
         [SerializeField] private Transform entitiesParent;
-        [SerializeField] private Transform resourcesParent;
         
         private void Awake()
         {
@@ -25,7 +24,7 @@ namespace SurvivalGame.Gameplay
 
             for (int i = 0; i < entities.Length; i++)
             {
-                entities[i].Init();
+                entities[i].Init(objectPools);
             }
         }
     }

@@ -15,6 +15,7 @@ namespace SurvivalGame.ScriptableObjects
         [SerializeField] private Sprite image;
 
         public string DisplayName => displayName;
+        public GameObject Prefab => prefab;
         public Sprite Image => image;
     }
 }

@@ -708,7 +708,7 @@ MonoBehaviour:
   itemsSystem: {fileID: 1158732008}
   objectPools: {fileID: 1753909798}
   entitiesParent: {fileID: 703672697}
-  resourcesParent: {fileID: 0}
+  itemsParent: {fileID: 1482052284}
 --- !u!4 &1359821945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1326858443006466951, guid: fe668f2237ebff24f987fe257d376826, type: 3}
@@ -795,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482052284}
   m_Layer: 0
-  m_Name: Resources
+  m_Name: Items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
