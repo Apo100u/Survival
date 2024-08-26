@@ -21,6 +21,7 @@ namespace SurvivalGame.Gameplay.Entities
         public override void Init()
         {
             AssignComponents();
+            hud.Init(mainCamera);
         }
 
         private void AssignComponents()
@@ -64,9 +65,11 @@ namespace SurvivalGame.Gameplay.Entities
 
         private void OnClosestInteractableChanged(ClosestInteractableChangedEventArgs args)
         {
+            hud.TooltipWidget.Show(args.NewClosestInteractable);
+            
             if (args.NewClosestInteractable)
             {
-                
+                hud.TooltipWidget.SetTransformToFollow(args.NewClosestInteractable.transform);
             }
         }
     }

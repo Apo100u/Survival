@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace SurvivalGame.UI.Widgets
@@ -7,9 +6,23 @@ namespace SurvivalGame.UI.Widgets
     {
         protected RectTransform rectTransform;
 
-        private void Awake()
+        private Camera mainCamera;
+        private RectTransform area;
+        private Transform transformToFollow;
+        
+        public void Init(Camera camera, RectTransform area)
         {
+            mainCamera = camera;
+            this.area = area;
             rectTransform = GetComponent<RectTransform>();
+        }
+
+        private void Update()
+        {
+            if (transformToFollow)
+            {
+                FollowAssignedTransform();
+            }
         }
 
         public void Show(bool show)
@@ -17,10 +30,17 @@ namespace SurvivalGame.UI.Widgets
             gameObject.SetActive(show);
         }
 
-        public void SetPositionFromWorldPosition(Vector3 worldPosition, Camera camera)
+        public void SetTransformToFollow(Transform transformToFollow)
         {
-            Vector3 screenPosition = camera.WorldToScreenPoint(worldPosition);
-            rectTransform.anchoredPosition = screenPosition;
+            this.transformToFollow = transformToFollow;
+        }
+
+        private void FollowAssignedTransform()
+        {
+            Vector3 screenPosition = mainCamera.WorldToScreenPoint(transformToFollow.position);
+            Vector2 adjustedPosition = new(screenPosition.x / Screen.width * area.sizeDelta.x, screenPosition.y / Screen.height * area.sizeDelta.y);
+            
+            rectTransform.anchoredPosition = adjustedPosition;
         }
     }
 }
