@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SurvivalGame.UI.Widgets
 {
-    public class PlayerInventoryWidget : Widget
+    public class PlayerInventoryWidget : InventoryWidget
     {
         [Header("Player Inventory Widget settings")]
         [Tooltip("How fast will the widget slide in or out when showing / hiding.")]

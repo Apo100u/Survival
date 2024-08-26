@@ -2,7 +2,8 @@
     "name": "SurvivalGame.UI",
     "rootNamespace": "SurvivalGame.UI",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:a0ad45efc7c899d4989dd358f6928fe4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

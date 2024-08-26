@@ -71,6 +71,7 @@ namespace SurvivalGame.Gameplay.Entities
             if (input.GetInventoryDown())
             {
                 hud.PlayerInventoryWidget.ToggleShow();
+                hud.PlayerInventoryWidget.ShowItems(inventory.GetItems());
             }
         }
         
