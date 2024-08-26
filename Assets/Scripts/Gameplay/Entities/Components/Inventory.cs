@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SurvivalGame.Gameplay.Entities.Components
 {
-    public class Equipment : MonoBehaviour
+    public class Inventory : MonoBehaviour
     {
         private Dictionary<ItemData, int> itemCountPairs = new();
 

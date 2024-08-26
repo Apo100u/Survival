@@ -9,7 +9,7 @@ using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
 namespace SurvivalGame.Gameplay.Entities
 {
-    [RequireComponent(typeof(Input), typeof(Movement), typeof(Equipment))]
+    [RequireComponent(typeof(Input), typeof(Movement), typeof(Inventory))]
     [RequireComponent(typeof(InteractionHandler))]
     public class Player : Entity
     {
@@ -19,7 +19,7 @@ namespace SurvivalGame.Gameplay.Entities
         
         private Input input;
         private Movement movement;
-        private Equipment equipment;
+        private Inventory inventory;
         private InteractionHandler interactionHandler;
         
         public override void Init()
@@ -32,7 +32,7 @@ namespace SurvivalGame.Gameplay.Entities
         {
             input              = GetComponent<Input>();
             movement           = GetComponent<Movement>();
-            equipment          = GetComponent<Equipment>();
+            inventory          = GetComponent<Inventory>();
             interactionHandler = GetComponent<InteractionHandler>();
         }
 
@@ -75,7 +75,7 @@ namespace SurvivalGame.Gameplay.Entities
 
             if (item)
             {
-                equipment.AddItem(item.ItemData);
+                inventory.AddItem(item.ItemData);
             }
         }
 
