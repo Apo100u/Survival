@@ -22,12 +22,16 @@ namespace SurvivalGame.Gameplay.Entities.Components
         {
             interactionRange.TriggerEntered += OnInteractionTriggerEntered;
             interactionRange.TriggerExited += OnInteractionTriggerExited;
+            
+            ClosestInteractableChanged?.Invoke(new ClosestInteractableChangedEventArgs(closestInteractable));
         }
 
         private void OnDisable()
         {
             interactionRange.TriggerEntered -= OnInteractionTriggerEntered;
             interactionRange.TriggerExited -= OnInteractionTriggerExited;
+            
+            ClosestInteractableChanged?.Invoke(new ClosestInteractableChangedEventArgs(null));
         }
 
         private void Update()

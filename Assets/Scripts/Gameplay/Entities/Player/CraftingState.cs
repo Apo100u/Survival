@@ -13,7 +13,6 @@ namespace SurvivalGame.Gameplay.Entities.Player
             base.OnEnter();
 
             Vector3 lootAtTarget = visuals.transform.position - Vector3.forward;
-            
             visuals.LookAt(lootAtTarget);
         }
 

@@ -17,15 +17,19 @@ namespace SurvivalGame.Gameplay.Entities.Player
         public override void OnEnter()
         {
             base.OnEnter();
-            
+
             interactionHandler.InteractionExecuted += OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged += OnClosestInteractableChanged;
             hud.PlayerInventoryWidget.SlotInteracted += OnInventorySlotInteracted;
+            
+            interactionHandler.enabled = true;
         }
 
         public override void OnExit()
         {
             base.OnExit();
+            
+            interactionHandler.enabled = false;
             
             interactionHandler.InteractionExecuted -= OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged -= OnClosestInteractableChanged;

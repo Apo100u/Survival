@@ -35,16 +35,6 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void Update()
         {
             stateMachine.Process();
-
-            // Testing - remove after test!
-            if (UnityEngine.Input.GetKeyDown(KeyCode.P))
-            {
-                stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestCrafting);
-            }
-            else if (UnityEngine.Input.GetKeyDown(KeyCode.L))
-            {
-                stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestExploring);
-            }
         }
 
         private void CreatePlayerDependencies()
