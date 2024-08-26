@@ -32,11 +32,11 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
         private void Update()
         {
-            RemoveInactiveInteractablesInRage();
+            RemoveInactiveInteractablesInRange();
             UpdateClosestInteractable();
         }
 
-        private void RemoveInactiveInteractablesInRage()
+        private void RemoveInactiveInteractablesInRange()
         {
             for (int i = interactablesInRange.Count - 1; i >= 0; i--)
             {
