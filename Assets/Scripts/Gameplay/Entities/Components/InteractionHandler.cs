@@ -56,7 +56,6 @@ namespace SurvivalGame.Gameplay.Entities.Components
             if (closestInteractable != previousClosestInteractable)
             {
                 ClosestInteractableChanged?.Invoke(new ClosestInteractableChangedEventArgs(closestInteractable));
-                Debug.Log(closestInteractable ? closestInteractable.name : "null");
             }
             
             previousClosestInteractable = closestInteractable;

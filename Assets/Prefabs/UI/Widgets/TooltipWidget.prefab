@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef99740b115d959409b0d11c8d2b5aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transformFollowOffset: {x: 0, y: 90, z: 0}
   text: {fileID: 2774769088193507082}
 --- !u!1 &8567982239267290947
 GameObject:
