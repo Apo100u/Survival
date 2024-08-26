@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SurvivalGame.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "New Item Data", menuName = "Survival Game/Item Data")]
-    public class ItemData : ScriptableObject
+    public class ItemData : UniqueIdScriptableObject
     {
         [Tooltip("Human-friendly name for the resource. This is how the resource will be called in the game.")]
         [SerializeField] private string displayName;
@@ -15,12 +15,5 @@ namespace SurvivalGame.ScriptableObjects
         [SerializeField] private Sprite image;
 
         public string DisplayName => displayName;
-        
-        public int UniqueId { get; private set; }
-
-        public void AssignUniqueId(int uniqueId)
-        {
-            UniqueId = uniqueId;
-        }
     }
 }

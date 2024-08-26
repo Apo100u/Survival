@@ -17,15 +17,20 @@ namespace SurvivalGame.Gameplay.Items
         
         public void Init()
         {
-            AssignUniqueIdsToItems();
+            AssignUniqueIds();
             CreateRecipeTree();
         }
 
-        private void AssignUniqueIdsToItems()
+        private void AssignUniqueIds()
         {
             for (int i = 0; i < items.Length; i++)
             {
                 items[i].AssignUniqueId(i);
+            }
+
+            for (int i = 0; i < recipes.Length; i++)
+            {
+                recipes[i].AssignUniqueId(i);
             }
         }
 
