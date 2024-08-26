@@ -126,7 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformFollowOffset: {x: 0, y: 0, z: 0}
+  background: {fileID: 2990713612407815316}
   displayImage: {fileID: 5284941019608747894}
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 0.87058824}
+  highlightedBackgroundColor: {r: 0.28627452, g: 0.28627452, b: 0.28627452, a: 0.87058824}
 --- !u!1 &4985282196842642825
 GameObject:
   m_ObjectHideFlags: 0
