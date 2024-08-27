@@ -1,12 +1,19 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SurvivalGame.UI.Widgets
 {
     public class PlayerInventoryWidget : InventoryWidget
     {
+        [Header("Player Inventory Widget Dependencies")]
+        [SerializeField] private Button craftingButton;
+        
         [Header("Player Inventory Widget settings")]
         [Tooltip("How fast will the widget slide in or out when showing / hiding.")]
         [SerializeField] private float slideSpeed = 5.0f;
+
+        public event Action CraftingButtonInteracted;
         
         private Vector2 hiddenPosition;
         private Vector2 shownPosition;
@@ -16,6 +23,8 @@ namespace SurvivalGame.UI.Widgets
         {
             base.Init(camera, area);
 
+            craftingButton.onClick.AddListener(OnCraftingButtonInteracted);
+            
             hiddenPosition = -Vector2.right * rectTransform.sizeDelta.x;
             shownPosition = Vector2.zero;
         }
@@ -49,6 +58,11 @@ namespace SurvivalGame.UI.Widgets
             {
                 gameObject.SetActive(false);
             }
+        }
+        
+        private void OnCraftingButtonInteracted()
+        {
+            CraftingButtonInteracted?.Invoke();
         }
     }
 }

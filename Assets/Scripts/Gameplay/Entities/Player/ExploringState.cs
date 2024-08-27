@@ -76,16 +76,6 @@ namespace SurvivalGame.Gameplay.Entities.Player
                 objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
             }
         }
-        
-        private void OnInventorySlotInteracted(InventorySlotInteractedEventArgs args)
-        {
-            if (args.ItemInSlotData)
-            {
-                inventory.DropItem(args.ItemInSlotData, objectPools);
-                
-                UpdateInventoryWidget();
-            }
-        }
 
         private void OnClosestInteractableChanged(ClosestInteractableChangedEventArgs args)
         {
@@ -94,6 +84,16 @@ namespace SurvivalGame.Gameplay.Entities.Player
             if (args.NewClosestInteractable)
             {
                 UpdateInteractableTooltip(args.NewClosestInteractable);
+            }
+        }
+        
+        private void OnInventorySlotInteracted(InventorySlotInteractedEventArgs args)
+        {
+            if (args.ItemInSlotData)
+            {
+                inventory.DropItem(args.ItemInSlotData, objectPools);
+                
+                UpdateInventoryWidget();
             }
         }
         

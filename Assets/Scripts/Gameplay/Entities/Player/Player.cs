@@ -30,6 +30,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             CreatePlayerDependencies();
             hud.Init(mainCamera);
             SetUpStateMachine();
+            SetUpStateTransitions();
         }
 
         private void Update()
@@ -65,6 +66,16 @@ namespace SurvivalGame.Gameplay.Entities.Player
             stateMachine.AddState(craftingState);
             
             stateMachine.Start(exploringState);
+        }
+        
+        private void SetUpStateTransitions()
+        {
+            hud.PlayerInventoryWidget.CraftingButtonInteracted += OnCraftingButtonInteracted;
+        }
+
+        private void OnCraftingButtonInteracted()
+        {
+            stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestCrafting);
         }
     }
 }

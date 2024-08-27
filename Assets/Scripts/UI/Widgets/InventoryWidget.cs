@@ -7,7 +7,7 @@ namespace SurvivalGame.UI.Widgets
 {
     public class InventoryWidget : Widget
     {
-        [Header("Dependencies")]
+        [Header("Inventory Widget Dependencies")]
         [SerializeField] private SlotWidget[] slotsInOrder;
 
         public event Action<InventorySlotInteractedEventArgs> SlotInteracted;
