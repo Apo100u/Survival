@@ -12,6 +12,9 @@ namespace SurvivalGame.Gameplay.Entities.Player
         {
             base.OnEnter();
 
+            hud.PlayerInventoryWidget.Show(false);
+            hud.PlayerCraftingWidget.Show(true);
+            
             Vector3 lootAtTarget = visuals.transform.position - Vector3.forward;
             visuals.LookAt(lootAtTarget);
         }
@@ -19,11 +22,9 @@ namespace SurvivalGame.Gameplay.Entities.Player
         public override void OnExit()
         {
             base.OnExit();
-        }
-
-        public override void Process()
-        {
-            base.Process();
+            
+            hud.PlayerInventoryWidget.Show(true);
+            hud.PlayerCraftingWidget.Show(false);
         }
     }
 }

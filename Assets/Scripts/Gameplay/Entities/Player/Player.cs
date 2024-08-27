@@ -71,11 +71,17 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void SetUpStateTransitions()
         {
             hud.PlayerInventoryWidget.CraftingButtonInteracted += OnCraftingButtonInteracted;
+            hud.PlayerCraftingWidget.BackButtonInteracted += OnBackButtonInteracted;
         }
 
         private void OnCraftingButtonInteracted()
         {
             stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestCrafting);
+        }
+
+        private void OnBackButtonInteracted()
+        {
+            stateMachine.ExecuteCommand(PlayerStateMachineCommand.RequestExploring);
         }
     }
 }
