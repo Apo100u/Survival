@@ -8,6 +8,9 @@ namespace SurvivalGame.UI.Widgets
     {
         [Header("Player Crafting Widget Dependencies")]
         [SerializeField] private Button backButton;
+        [SerializeField] private Button craftButton;
+        [SerializeField] private SlotWidget[] ingredientsSlotsInOrder;
+        [SerializeField] private SlotWidget outputWidget;
         
         public event Action BackButtonInteracted;
 
