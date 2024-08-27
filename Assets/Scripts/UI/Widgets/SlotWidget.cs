@@ -33,6 +33,12 @@ namespace SurvivalGame.UI.Widgets
             Interacted?.Invoke(new SlotInteractedEventArgs(this));
         }
 
+        public void Clear()
+        {
+            SetDisplayImage(null);
+            SetTooltip(string.Empty);
+        }
+
         public void SetDisplayImage(Sprite sprite)
         {
             displayImage.gameObject.SetActive(sprite);
@@ -46,6 +52,11 @@ namespace SurvivalGame.UI.Widgets
         public void SetTooltip(string text)
         {
             tooltipText.text = text;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                tooltipParent.SetActive(false);
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)

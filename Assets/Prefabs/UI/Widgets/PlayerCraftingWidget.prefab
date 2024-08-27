@@ -486,7 +486,7 @@ MonoBehaviour:
   ingredientsSlotsInOrder:
   - {fileID: 2062825323415663022}
   - {fileID: 1054862890554155689}
-  outputWidget: {fileID: 8028823169961202018}
+  outputSlot: {fileID: 8028823169961202018}
 --- !u!1 &3870824255342800160
 GameObject:
   m_ObjectHideFlags: 0
