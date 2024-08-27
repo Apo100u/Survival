@@ -21,6 +21,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             interactionHandler.InteractionExecuted += OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged += OnClosestInteractableChanged;
             hud.PlayerInventoryWidget.SlotInteracted += OnInventorySlotInteracted;
+            hud.PlayerInventoryWidget.CloseButtonInteracted += OnInventoryCloseButtonInteracted;
             
             interactionHandler.enabled = true;
         }
@@ -34,6 +35,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             interactionHandler.InteractionExecuted -= OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged -= OnClosestInteractableChanged;
             hud.PlayerInventoryWidget.SlotInteracted -= OnInventorySlotInteracted;
+            hud.PlayerInventoryWidget.CloseButtonInteracted -= OnInventoryCloseButtonInteracted;
         }
 
         public override void Process()
@@ -55,8 +57,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             if (input.GetInventoryDown())
             {
-                hud.PlayerInventoryWidget.ToggleShow();
-                UpdateInventoryWidget();
+                ToggleInventoryWidget();
             }
         }
         
@@ -92,9 +93,13 @@ namespace SurvivalGame.Gameplay.Entities.Player
             if (args.ItemInSlotData)
             {
                 inventory.DropItem(args.ItemInSlotData, objectPools);
-                
                 UpdateInventoryWidget();
             }
+        }
+        
+        private void OnInventoryCloseButtonInteracted()
+        {
+            ToggleInventoryWidget();
         }
         
         private void UpdateInteractableTooltip(GameObject interactable)
@@ -108,6 +113,12 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             hud.TooltipWidget.SetTransformToFollow(interactable.transform);
             hud.TooltipWidget.UpdateText(message.ToString());
+        }
+
+        private void ToggleInventoryWidget()
+        {
+            hud.PlayerInventoryWidget.ToggleShow();
+            UpdateInventoryWidget();
         }
         
         private void UpdateInventoryWidget()
