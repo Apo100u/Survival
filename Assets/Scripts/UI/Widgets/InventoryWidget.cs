@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SurvivalGame.UI.Widgets
 {
-    public class InventoryWidget : Widget
+    public class InventoryWidget : SlidingWidget
     {
         [Header("Inventory Widget Dependencies")]
         [SerializeField] private SlotWidget[] slotsInOrder;
