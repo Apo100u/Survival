@@ -50,11 +50,13 @@ namespace SurvivalGame.UI.Widgets
                     ItemData itemData = items[i];
 
                     slot.SetDisplayImage(itemData.Image);
+                    slot.SetTooltip(itemData.DisplayName);
                     itemsBySlots[slot] = itemData;
                 }
                 else
                 {
                     slot.SetDisplayImage(null);
+                    slot.SetTooltip(string.Empty);
                     itemsBySlots[slot] = null;
                 }
             }

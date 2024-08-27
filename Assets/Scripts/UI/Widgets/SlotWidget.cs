@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ namespace SurvivalGame.UI.Widgets
         [SerializeField] private Image background;
         [SerializeField] private Image displayImage;
         [SerializeField] private Button interactButton;
+        [SerializeField] private GameObject tooltipParent;
+        [SerializeField] private TMP_Text tooltipText;
 
         [Header("Settings")]
         [SerializeField] private Color defaultBackgroundColor = Color.white;
@@ -40,14 +43,25 @@ namespace SurvivalGame.UI.Widgets
             }
         }
 
+        public void SetTooltip(string text)
+        {
+            tooltipText.text = text;
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             background.color = highlightedBackgroundColor;
+
+            if (!string.IsNullOrEmpty(tooltipText.text))
+            {
+                tooltipParent.SetActive(true);
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             background.color = defaultBackgroundColor;
+            tooltipParent.gameObject.SetActive(false);
         }
     }
 
