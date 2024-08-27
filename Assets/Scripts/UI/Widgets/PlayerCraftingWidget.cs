@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace SurvivalGame.UI.Widgets
 {
-    public class PlayerCraftingWidget : SlidingWidget
+    public class PlayerCraftingWidget : InventoryWidget
     {
         [Header("Player Crafting Widget Dependencies")]
         [SerializeField] private Button backButton;

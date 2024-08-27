@@ -12,19 +12,32 @@ namespace SurvivalGame.Gameplay.Entities.Player
         {
             base.OnEnter();
 
-            hud.PlayerInventoryWidget.Show(false);
-            hud.PlayerCraftingWidget.Show(true);
-            
-            Vector3 lootAtTarget = visuals.transform.position - Vector3.forward;
-            visuals.LookAt(lootAtTarget);
+            ShowCraftingUI(true);
+            SetupLookAtVisualsForCrafting();
         }
 
         public override void OnExit()
         {
             base.OnExit();
             
-            hud.PlayerInventoryWidget.Show(true);
-            hud.PlayerCraftingWidget.Show(false);
+            ShowCraftingUI(false);
+        }
+
+        private void ShowCraftingUI(bool show)
+        {
+            hud.PlayerInventoryWidget.Show(!show);
+            hud.PlayerCraftingWidget.Show(show);
+
+            if (show)
+            {
+                hud.PlayerCraftingWidget.ShowItems(inventory.GetItems());
+            }
+        }
+
+        private void SetupLookAtVisualsForCrafting()
+        {
+            Vector3 lootAtTarget = visuals.transform.position - Vector3.forward;
+            visuals.LookAt(lootAtTarget);
         }
     }
 }

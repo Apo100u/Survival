@@ -80,14 +80,17 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
         private void OnClosestInteractableChanged(ClosestInteractableChangedEventArgs args)
         {
-            hud.TooltipWidget.Show(args.NewClosestInteractable);
-            
-            if (args.NewClosestInteractable)
+            if (hud.TooltipWidget)
             {
-                UpdateInteractableTooltip(args.NewClosestInteractable);
+                hud.TooltipWidget.Show(args.NewClosestInteractable);
+
+                if (args.NewClosestInteractable)
+                {
+                    UpdateInteractableTooltip(args.NewClosestInteractable);
+                }
             }
         }
-        
+
         private void OnInventorySlotInteracted(InventorySlotInteractedEventArgs args)
         {
             if (args.ItemInSlotData)
