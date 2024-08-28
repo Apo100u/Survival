@@ -75,27 +75,36 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             if (item)
             {
-                CollectItem(item);
+                TryCollectItem(item);
             }
         }
 
-        private void CollectItem(Item item)
+        private void TryCollectItem(Item item)
         {
-            inventory.AddItem(item.ItemData);
-
-            if (hud.PlayerInventoryWidget.IsShown)
+            if (inventory.HasFreeSpace())
             {
-                UpdateInventoryWidget();
+                inventory.TryAddItem(item.ItemData);
+                
+                if (hud.PlayerInventoryWidget.IsShown)
+                {
+                    UpdateInventoryWidget();
+                }
+
+                objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
+
+                if (!firstItemCollected)
+                {
+                    firstItemCollected = true;
+                    hud.InfoWidget.Show(true);
+                    hud.InfoWidget.SetInfoText($"Press [{input.InventoryKey}] to open inventory.");
+                    hud.InfoWidget.HideAfterSeconds(5.0f);
+                }
             }
-
-            objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
-
-            if (!firstItemCollected)
+            else
             {
-                firstItemCollected = true;
                 hud.InfoWidget.Show(true);
-                hud.InfoWidget.SetInfoText($"Press [{input.InventoryKey}] to open inventory.");
-                hud.InfoWidget.HideAfterSeconds(5.0f);
+                hud.InfoWidget.SetInfoText("Inventory is full!");
+                hud.InfoWidget.HideAfterSeconds(2.0f);
             }
         }
 

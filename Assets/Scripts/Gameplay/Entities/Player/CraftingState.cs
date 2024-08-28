@@ -71,7 +71,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             if (isCraftingSuccessful)
             {
-                inventory.AddItem(recipeFromCurrentIngredients.SuccessfulOutput);
+                inventory.TryAddItem(recipeFromCurrentIngredients.SuccessfulOutput);
                 hud.PlayerCraftingWidget.ShowItemInFirstEmptyInventorySlot(recipeFromCurrentIngredients.SuccessfulOutput);
             }
 

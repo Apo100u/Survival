@@ -8,6 +8,8 @@ namespace SurvivalGame.Gameplay.Entities.Components
 {
     public class Inventory : MonoBehaviour
     {
+        [Header("Inventory settings")]
+        [SerializeField] private int capacity = 16;
         [Tooltip("When dropping items from the inventory, they will appear in random location within this range.")]
         [SerializeField] private float dropRange = 3.0f;
         
@@ -18,9 +20,22 @@ namespace SurvivalGame.Gameplay.Entities.Components
             return items.AsReadOnly();
         }
 
-        public void AddItem(ItemData item)
+        public bool HasFreeSpace()
         {
-            items.Add(item);
+            return items.Count < capacity;
+        }
+
+        public bool TryAddItem(ItemData item)
+        {
+            bool itemAddedSuccessfully = false;
+            
+            if (HasFreeSpace())
+            {
+                items.Add(item);
+                itemAddedSuccessfully = true;
+            }
+
+            return itemAddedSuccessfully;
         }
 
         public void RemoveItem(ItemData item)

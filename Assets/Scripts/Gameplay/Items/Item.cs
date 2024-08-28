@@ -10,7 +10,7 @@ namespace SurvivalGame.Gameplay.Items
         
         public void Interact()
         {
-            gameObject.SetActive(false);
+            
         }
 
         public string GetInteractionMessage()
