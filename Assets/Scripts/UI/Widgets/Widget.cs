@@ -10,10 +10,12 @@ namespace SurvivalGame.UI.Widgets
         public bool IsShown => gameObject.activeSelf;
         
         protected RectTransform rectTransform;
+        protected bool isAutoHiding;
 
         private Camera mainCamera;
         private RectTransform area;
         private Transform transformToFollow;
+        private float secondsLeftToAutoHide;
         
         public virtual void Init(Camera camera, RectTransform area)
         {
@@ -22,11 +24,22 @@ namespace SurvivalGame.UI.Widgets
             rectTransform = GetComponent<RectTransform>();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (transformToFollow)
             {
                 FollowAssignedTransform();
+            }
+
+            if (isAutoHiding)
+            {
+                secondsLeftToAutoHide -= Time.deltaTime;
+
+                if (secondsLeftToAutoHide <= 0.0f)
+                {
+                    isAutoHiding = false;
+                    Show(false);
+                }
             }
         }
 
@@ -38,6 +51,13 @@ namespace SurvivalGame.UI.Widgets
         public virtual void Show(bool show)
         {
             gameObject.SetActive(show);
+            isAutoHiding = false;
+        }
+
+        public void HideAfterSeconds(float durationInSeconds)
+        {
+            isAutoHiding = true;
+            secondsLeftToAutoHide = durationInSeconds;
         }
 
         public void SetTransformToFollow(Transform transformToFollow)

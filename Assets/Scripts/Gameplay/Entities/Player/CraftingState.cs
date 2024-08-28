@@ -75,6 +75,18 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             hud.PlayerCraftingWidget.ClearIngredientSlots();
             UpdateCurrentRecipe();
+            ShowCraftingFeedback(isCraftingSuccessful);
+        }
+
+        private void ShowCraftingFeedback(bool isCraftingSuccessful)
+        {
+            string message = isCraftingSuccessful
+                ? "Crafting successful"
+                : "Crafting failed";
+            
+            hud.InfoWidget.Show(true);
+            hud.InfoWidget.SetInfoText(message);
+            hud.InfoWidget.HideAfterSeconds(3.0f);
         }
 
         private void OnIngredientAdded(IngredientEventArgs args)

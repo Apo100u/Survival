@@ -25,6 +25,7 @@ namespace SurvivalGame.UI.Widgets
             if (show)
             {
                 gameObject.SetActive(true);
+                isAutoHiding = false;
             }
             
             targetPosition = show
@@ -32,8 +33,10 @@ namespace SurvivalGame.UI.Widgets
                 : hiddenPosition;
         }
 
-        protected virtual void Update()
+        protected override void Update()
         {
+            base.Update();
+            
             if (rectTransform.anchoredPosition != targetPosition)
             {
                 MoveTowardsTargetPosition();
