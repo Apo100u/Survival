@@ -25,6 +25,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             ShowCraftingUI(true);
             SetupLookAtVisualsForCrafting();
             
+            hud.PlayerCraftingWidget.CraftButtonInteracted += OnCraftButtonInteracted;
             hud.PlayerCraftingWidget.IngredientAdded += OnIngredientAdded;
             hud.PlayerCraftingWidget.IngredientRemoved += OnIngredientRemoved;
         }
@@ -36,10 +37,31 @@ namespace SurvivalGame.Gameplay.Entities.Player
             craftingCalculator = null;
             ShowCraftingUI(false);
             
+            hud.PlayerCraftingWidget.CraftButtonInteracted -= OnCraftButtonInteracted;
             hud.PlayerCraftingWidget.IngredientAdded -= OnIngredientAdded;
             hud.PlayerCraftingWidget.IngredientRemoved -= OnIngredientRemoved;
         }
         
+        
+        private void OnCraftButtonInteracted()
+        {
+            if (recipeFromCurrentIngredients)
+            {
+                TryCrafting(recipeFromCurrentIngredients);
+            }
+        }
+
+        private void TryCrafting(RecipeData recipeData)
+        {
+            bool isCraftingSuccessful = Random.Range(0f, 1f) <= recipeData.SuccessChance;
+
+            for (int i = 0; i < recipeData.Ingredients.Length; i++)
+            {
+                inventory.RemoveItem(recipeData.Ingredients[i]);
+                hud.PlayerCraftingWidget.ClearIngredientSlots();
+            }
+        }
+
         private void OnIngredientAdded(IngredientEventArgs args)
         {
             craftingCalculator.AddIngredient(args.Ingredient);

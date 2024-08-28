@@ -14,6 +14,7 @@ namespace SurvivalGame.ScriptableObjects
         [Tooltip("Chance of receiving successful output. Range 0 - 1 (0 is 0%, 1 is 100%).")]
         [SerializeField, Range(0f, 1f)] private float successChance = 0.5f;
 
+        public ItemData[] Ingredients => ingredients;
         public ItemData SuccessfulOutput => successfulOutput;
         public float SuccessChance => successChance;
         

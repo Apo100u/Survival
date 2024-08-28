@@ -143,6 +143,15 @@ namespace SurvivalGame.UI.Widgets
             ingredientSlot.Clear();
             ingredientsBySlots[ingredientSlot] = null;
         }
+
+        public void ClearIngredientSlots()
+        {
+            for (int i = 0; i < ingredientsSlotsInOrder.Length; i++)
+            {
+                ingredientsSlotsInOrder[i].Clear();
+                ingredientsBySlots[ingredientsSlotsInOrder[i]] = null;
+            }
+        }
     }
 
     public class IngredientEventArgs

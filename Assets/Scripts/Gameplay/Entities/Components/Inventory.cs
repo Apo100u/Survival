@@ -23,9 +23,14 @@ namespace SurvivalGame.Gameplay.Entities.Components
             items.Add(item);
         }
 
-        public void DropItem(ItemData item, ObjectPools objectPools)
+        public void RemoveItem(ItemData item)
         {
             items.Remove(item);
+        }
+
+        public void DropItem(ItemData item, ObjectPools objectPools)
+        {
+            RemoveItem(item);
 
             GameObject itemObject = objectPools.GetFromPool(item.Prefab);
             Vector3 dropLocation = GetRandomLocationInDropRange();
