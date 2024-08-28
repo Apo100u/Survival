@@ -234,6 +234,9 @@ MonoBehaviour:
   hands:
   - {fileID: 1212828676742010770}
   - {fileID: 1212828676567298875}
+  walkingAnimationSpeed: 15
+  walkingAnimationSmoothness: 100
+  walkingAnimationMaxY: 0.5
 --- !u!54 &3347561731725555312
 Rigidbody:
   m_ObjectHideFlags: 0

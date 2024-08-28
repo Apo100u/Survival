@@ -45,7 +45,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             base.Process();
             
             ProcessInputActions();
-            visuals.LookAt(input.GetAimWorldPosition(mainCamera));
+            ProcessVisuals();
         }
         
         private void ProcessInputActions()
@@ -61,6 +61,12 @@ namespace SurvivalGame.Gameplay.Entities.Player
             {
                 ToggleInventoryWidget();
             }
+        }
+
+        private void ProcessVisuals()
+        {
+            visuals.LookAt(input.GetAimWorldPosition(mainCamera));
+            visuals.SetWalkingAnimationActive(input.GetNormalizedMovementInput() != Vector3.zero);
         }
         
         private void OnInteractionExecuted(InteractionExecutedEventArgs args)
