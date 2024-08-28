@@ -10,7 +10,7 @@ namespace SurvivalGame.UI.Widgets
         [Header("Inventory Widget Dependencies")]
         [SerializeField] private SlotWidget[] slotsInOrder;
 
-        public event Action<InventorySlotInteractedEventArgs> SlotInteracted;
+        public event Action<InventorySlotInteractedEventArgs> InventorySlotInteracted;
         
         private Dictionary<SlotWidget, ItemData> itemsBySlots = new();
 
@@ -31,7 +31,7 @@ namespace SurvivalGame.UI.Widgets
             SlotWidget slot = slotInteractedEventArgs.SlotWidget;
             ItemData itemData = itemsBySlots[slot];
             
-            SlotInteracted?.Invoke(new InventorySlotInteractedEventArgs(slot, itemData));
+            InventorySlotInteracted?.Invoke(new InventorySlotInteractedEventArgs(slot, itemData));
         }
 
         protected void ShowItemInFirstEmptyInventorySlot(ItemData itemData)

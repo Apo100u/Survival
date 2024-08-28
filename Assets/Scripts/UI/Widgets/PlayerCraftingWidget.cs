@@ -13,7 +13,9 @@ namespace SurvivalGame.UI.Widgets
         [SerializeField] private Button craftButton;
         [SerializeField] private SlotWidget[] ingredientsSlotsInOrder;
         [SerializeField] private SlotWidget outputSlot;
-        
+
+        public event Action<IngredientEventArgs> IngredientAdded;
+        public event Action<IngredientEventArgs> IngredientRemoved;
         public event Action BackButtonInteracted;
         public event Action CraftButtonInteracted;
         
@@ -31,7 +33,7 @@ namespace SurvivalGame.UI.Widgets
                 ingredientSlot.Interacted += OnIngredientSlotInteracted;
             }
 
-            SlotInteracted += OnInventorySlotInteracted;
+            InventorySlotInteracted += OnInventorySlotInteracted;
             
             backButton.onClick.AddListener(OnBackButtonInteracted);
             craftButton.onClick.AddListener(OnCraftButtonInteracted);
@@ -69,9 +71,10 @@ namespace SurvivalGame.UI.Widgets
         
         private void OnIngredientSlotInteracted(SlotInteractedEventArgs args)
         {
-            ShowItemInFirstEmptyInventorySlot(ingredientsBySlots[args.SlotWidget]);
-            args.SlotWidget.Clear();
-            ingredientsBySlots[args.SlotWidget] = null;
+            if (ingredientsBySlots[args.SlotWidget])
+            {
+                RemoveIngredient(args.SlotWidget);
+            }
         }
 
         private void OnBackButtonInteracted()
@@ -94,16 +97,42 @@ namespace SurvivalGame.UI.Widgets
                 
                 if (!ingredientsBySlots[ingredientSlot])
                 {
-                    ingredientSlot.SetDisplayImage(ingredientItemData.Image);
-                    ingredientSlot.SetTooltip(ingredientItemData.DisplayName);
-                    ingredientsBySlots[ingredientSlot] = ingredientItemData;
-
+                    AddIngredient(ingredientSlot, ingredientItemData);
                     ingredientShownSuccessfully = true;
+                    
                     break;
                 }
             }
 
             return ingredientShownSuccessfully;
+        }
+
+        private void AddIngredient(SlotWidget ingredientSlot, ItemData ingredientItemData)
+        {
+            ingredientSlot.SetDisplayImage(ingredientItemData.Image);
+            ingredientSlot.SetTooltip(ingredientItemData.DisplayName);
+            ingredientsBySlots[ingredientSlot] = ingredientItemData;
+
+            IngredientAdded?.Invoke(new IngredientEventArgs(ingredientItemData));
+        }
+
+        private void RemoveIngredient(SlotWidget ingredientSlot)
+        {
+            IngredientRemoved?.Invoke(new IngredientEventArgs(ingredientsBySlots[ingredientSlot]));
+                
+            ShowItemInFirstEmptyInventorySlot(ingredientsBySlots[ingredientSlot]);
+            ingredientSlot.Clear();
+            ingredientsBySlots[ingredientSlot] = null;
+        }
+    }
+
+    public class IngredientEventArgs
+    {
+        public readonly ItemData Ingredient;
+
+        public IngredientEventArgs(ItemData ingredient)
+        {
+            Ingredient = ingredient;
         }
     }
 }

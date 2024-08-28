@@ -20,7 +20,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             interactionHandler.InteractionExecuted += OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged += OnClosestInteractableChanged;
-            hud.PlayerInventoryWidget.SlotInteracted += OnInventorySlotInteracted;
+            hud.PlayerInventoryWidget.InventorySlotInteracted += OnInventorySlotInteracted;
             hud.PlayerInventoryWidget.CloseButtonInteracted += OnInventoryCloseButtonInteracted;
             
             interactionHandler.enabled = true;
@@ -34,7 +34,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             
             interactionHandler.InteractionExecuted -= OnInteractionExecuted;
             interactionHandler.ClosestInteractableChanged -= OnClosestInteractableChanged;
-            hud.PlayerInventoryWidget.SlotInteracted -= OnInventorySlotInteracted;
+            hud.PlayerInventoryWidget.InventorySlotInteracted -= OnInventorySlotInteracted;
             hud.PlayerInventoryWidget.CloseButtonInteracted -= OnInventoryCloseButtonInteracted;
         }
 
