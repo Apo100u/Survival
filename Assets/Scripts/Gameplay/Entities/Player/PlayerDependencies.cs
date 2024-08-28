@@ -8,8 +8,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
 {
     public class PlayerDependencies
     {
-        public readonly Transform Visuals;
-        public readonly Transform[] Hands;
+        public readonly Visuals Visuals;
         public readonly Movement Movement;
         public readonly InteractionHandler InteractionHandler;
         public readonly Inventory Inventory;
@@ -19,11 +18,10 @@ namespace SurvivalGame.Gameplay.Entities.Player
         public readonly ObjectPools ObjectPools;
         public readonly float CameraTransitionSpeed;
 
-        public PlayerDependencies(Transform visuals, Transform[] hands, Movement movement, InteractionHandler interactionHandler, Inventory inventory,
-            Input input, PlayerHUD hud, Camera mainCamera, ObjectPools objectPools, float cameraTransitionSpeed)
+        public PlayerDependencies(Visuals visuals, Movement movement, InteractionHandler interactionHandler, Inventory inventory, Input input, PlayerHUD hud,
+            Camera mainCamera, ObjectPools objectPools, float cameraTransitionSpeed)
         {
             Visuals = visuals;
-            Hands = hands;
             Movement = movement;
             InteractionHandler = interactionHandler;
             Inventory = inventory;

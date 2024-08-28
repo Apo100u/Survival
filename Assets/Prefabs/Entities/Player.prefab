@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 707150988157953862}
   - component: {fileID: 3475271929881136207}
   - component: {fileID: 2184537718997832270}
+  - component: {fileID: 6849235175505353801}
   - component: {fileID: 3347561731725555312}
   m_Layer: 0
   m_Name: Player
@@ -152,12 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59ef30a906eac646bdabb82348761f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visualsParent: {fileID: 1369327993787992758}
   mainCamera: {fileID: 6851880248670719013}
   hud: {fileID: 0}
-  hands:
-  - {fileID: 1212828676742010770}
-  - {fileID: 1212828676567298875}
   cameraTransitionSpeed: 30
   exploringCameraTarget: {fileID: 7253910956016365232}
   craftingCameraTarget: {fileID: 7978720289341272109}
@@ -221,6 +218,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: {fileID: 2499453990457030600}
+--- !u!114 &6849235175505353801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212828674959249233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf1a3ef9ad1f7d47a299c7f46d34f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualsParent: {fileID: 1369327993787992758}
 --- !u!54 &3347561731725555312
 Rigidbody:
   m_ObjectHideFlags: 0

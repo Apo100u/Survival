@@ -1,19 +1,18 @@
+using SurvivalGame.Gameplay.Entities.Components;
 using SurvivalGame.Gameplay.Helpers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SurvivalGame.Gameplay.Entities
 {
+    [RequireComponent(typeof(Visuals))]
     public abstract class Entity : MonoBehaviour
     {
-        [Header("Entity Dependencies")]
-        [Tooltip("GameObject with visual representation of the entity (mesh, particles, etc.).")]
-        [SerializeField] protected Transform visualsParent;
-
+        protected Visuals visuals;
         protected ObjectPools objectPools;
         
         public virtual void Init(ObjectPools objectPools)
         {
+            visuals = GetComponent<Visuals>();
             this.objectPools = objectPools;
         }
     }

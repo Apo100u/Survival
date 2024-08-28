@@ -11,7 +11,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
     {
         private const float CameraRotationSpeedMultiplier = 10.0f;
         
-        protected Transform visuals;
+        protected Visuals visuals;
         protected Movement movement;
         protected InteractionHandler interactionHandler;
         protected Inventory inventory;
