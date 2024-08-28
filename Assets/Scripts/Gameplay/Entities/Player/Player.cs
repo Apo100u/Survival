@@ -15,6 +15,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
         [Header("Player Dependencies")]
         [SerializeField] private Camera mainCamera;
         [SerializeField] private PlayerHUD hud;
+        [SerializeField] private Transform[] hands;
 
         [Header("Player Camera settings")]
         [SerializeField] private float cameraTransitionSpeed = 100.0f;
@@ -44,7 +45,8 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void CreatePlayerDependencies()
         {
             playerDependencies = new PlayerDependencies(
-                visuals:               visuals,
+                visuals:               visualsParent,
+                hands:                 hands,
                 movement:              GetComponent<Movement>(),
                 interactionHandler:    GetComponent<InteractionHandler>(),
                 inventory:             GetComponent<Inventory>(),

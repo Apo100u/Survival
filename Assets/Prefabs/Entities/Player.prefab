@@ -152,9 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59ef30a906eac646bdabb82348761f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visuals: {fileID: 1369327993787992758}
+  visualsParent: {fileID: 1369327993787992758}
   mainCamera: {fileID: 6851880248670719013}
   hud: {fileID: 0}
+  hands:
+  - {fileID: 1212828676742010770}
+  - {fileID: 1212828676567298875}
   cameraTransitionSpeed: 30
   exploringCameraTarget: {fileID: 7253910956016365232}
   craftingCameraTarget: {fileID: 7978720289341272109}

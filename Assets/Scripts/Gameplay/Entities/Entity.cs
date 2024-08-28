@@ -1,13 +1,14 @@
 using SurvivalGame.Gameplay.Helpers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SurvivalGame.Gameplay.Entities
 {
     public abstract class Entity : MonoBehaviour
     {
         [Header("Entity Dependencies")]
-        [Tooltip("Visual representation of the entity (mesh, particles, etc.).")]
-        [SerializeField] protected Transform visuals;
+        [Tooltip("GameObject with visual representation of the entity (mesh, particles, etc.).")]
+        [SerializeField] protected Transform visualsParent;
 
         protected ObjectPools objectPools;
         
