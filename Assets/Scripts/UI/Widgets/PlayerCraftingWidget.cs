@@ -25,11 +25,13 @@ namespace SurvivalGame.UI.Widgets
 
             for (int i = 0; i < ingredientsSlotsInOrder.Length; i++)
             {
-                ingredientsSlotsInOrder[i].Init(camera, area);
-                ingredientsBySlots.Add(ingredientsSlotsInOrder[i], null);
+                SlotWidget ingredientSlot = ingredientsSlotsInOrder[i];
+                ingredientSlot.Init(camera, area);
+                ingredientsBySlots.Add(ingredientSlot, null);
+                ingredientSlot.Interacted += OnIngredientSlotInteracted;
             }
 
-            SlotInteracted += OnSlotInteracted;
+            SlotInteracted += OnInventorySlotInteracted;
             
             backButton.onClick.AddListener(OnBackButtonInteracted);
             craftButton.onClick.AddListener(OnCraftButtonInteracted);
@@ -57,12 +59,19 @@ namespace SurvivalGame.UI.Widgets
             outputSlot.Clear();
         }
 
-        private void OnSlotInteracted(InventorySlotInteractedEventArgs args)
+        private void OnInventorySlotInteracted(InventorySlotInteractedEventArgs args)
         {
             if (args.ItemInSlotData && TryShowNextIngredient(args.ItemInSlotData))
             {
                 ShowItemInInventorySlot(args.SlotWidget, null);
             }
+        }
+        
+        private void OnIngredientSlotInteracted(SlotInteractedEventArgs args)
+        {
+            ShowItemInFirstEmptyInventorySlot(ingredientsBySlots[args.SlotWidget]);
+            args.SlotWidget.Clear();
+            ingredientsBySlots[args.SlotWidget] = null;
         }
 
         private void OnBackButtonInteracted()
