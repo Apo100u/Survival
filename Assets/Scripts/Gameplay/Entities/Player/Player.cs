@@ -43,7 +43,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             
             hud.InfoWidget.Show(true);
             hud.InfoWidget.SetInfoText(movementTutorialMessage);
-            hud.InfoWidget.HideAfterSeconds(5.0f);
+            hud.InfoWidget.HideAfterSeconds(2.0f);
         }
 
         private void Update()
