@@ -36,6 +36,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             
             craftingCalculator = null;
             ShowCraftingUI(false);
+            visuals.ClearAllItemsInHands();
             
             hud.PlayerCraftingWidget.CraftButtonInteracted -= OnCraftButtonInteracted;
             hud.PlayerCraftingWidget.IngredientAdded -= OnIngredientAdded;
@@ -63,6 +64,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             for (int i = 0; i < recipeFromCurrentIngredients.Ingredients.Length; i++)
             {
                 ItemData ingredient = recipeFromCurrentIngredients.Ingredients[i];
+                visuals.RemoveItemFromHand(ingredient);
                 craftingCalculator.RemoveIngredient(ingredient);
                 inventory.RemoveItem(ingredient);
             }
@@ -91,12 +93,14 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
         private void OnIngredientAdded(IngredientEventArgs args)
         {
+            visuals.AddItemToNextFreeHand(args.Ingredient);
             craftingCalculator.AddIngredient(args.Ingredient);
             UpdateCurrentRecipe();
         }
 
         private void OnIngredientRemoved(IngredientEventArgs args)
         {
+            visuals.RemoveItemFromHand(args.Ingredient);
             craftingCalculator.RemoveIngredient(args.Ingredient);
             UpdateCurrentRecipe();
         }

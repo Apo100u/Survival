@@ -12,8 +12,10 @@ namespace SurvivalGame.Gameplay.Entities
         
         public virtual void Init(ObjectPools objectPools)
         {
-            visuals = GetComponent<Visuals>();
             this.objectPools = objectPools;
+            
+            visuals = GetComponent<Visuals>();
+            visuals.Init(objectPools);
         }
     }
 }
