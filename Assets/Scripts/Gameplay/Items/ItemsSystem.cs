@@ -13,7 +13,7 @@ namespace SurvivalGame.Gameplay.Items
         [Tooltip("Assign all recipes that are available in the game.")]
         [SerializeField] private RecipeData[] recipes;
 
-        private OutputTree<int> recipeTreeByUniqueIds;
+        public OutputTree<int> RecipeTreeByUniqueIds { get; private set; }
         
         public void Init()
         {
@@ -36,14 +36,14 @@ namespace SurvivalGame.Gameplay.Items
 
         private void CreateRecipeTree()
         {
-            recipeTreeByUniqueIds = new OutputTree<int>();
+            RecipeTreeByUniqueIds = new OutputTree<int>();
 
             for (int i = 0; i < recipes.Length; i++)
             {
                 int[] ingredientsUniqueIds = recipes[i].GetIngredientsUniqueIds();
                 Array.Sort(ingredientsUniqueIds);
 
-                recipeTreeByUniqueIds.AddBranch(ingredientsUniqueIds, recipes[i].UniqueId);
+                RecipeTreeByUniqueIds.AddBranch(ingredientsUniqueIds, recipes[i].UniqueId);
             }
         }
     }

@@ -705,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5526efaff5301840a0c39b96d617d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1441481348}
   itemsSystem: {fileID: 1158732008}
   objectPools: {fileID: 1753909798}
   entitiesParent: {fileID: 703672697}
@@ -718,6 +719,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1212828674959249234, guid: 644a4e3b0600e2748bc3dc9e2f265ab7, type: 3}
   m_PrefabInstance: {fileID: 1212828676391030060}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1441481348 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8611511384570787304, guid: 644a4e3b0600e2748bc3dc9e2f265ab7, type: 3}
+  m_PrefabInstance: {fileID: 1212828676391030060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59ef30a906eac646bdabb82348761f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1457306147 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6851880248670719013, guid: 644a4e3b0600e2748bc3dc9e2f265ab7, type: 3}
@@ -1146,9 +1158,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5653385142222763024, guid: 247b809d81260da4298db955a98c2982, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544635166380960709, guid: 247b809d81260da4298db955a98c2982, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.511246
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330413700760745354, guid: 247b809d81260da4298db955a98c2982, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.511246
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895006204773300170, guid: 247b809d81260da4298db955a98c2982, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.511246
+      objectReference: {fileID: 0}
     - target: {fileID: 8335945016531727059, guid: 247b809d81260da4298db955a98c2982, type: 3}
       propertyPath: m_Name
       value: PlayerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687912422856565384, guid: 247b809d81260da4298db955a98c2982, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.511246
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

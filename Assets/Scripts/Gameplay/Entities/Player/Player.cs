@@ -2,6 +2,7 @@ using UnityEngine;
 using SurvivalGame.Gameplay.Entities.Components;
 using SurvivalGame.Gameplay.Helpers;
 using SurvivalGame.Gameplay.Helpers.StateMachine;
+using SurvivalGame.Gameplay.Items;
 using SurvivalGame.UI;
 using Input = SurvivalGame.Gameplay.Entities.Components.Input;
 
@@ -19,6 +20,8 @@ namespace SurvivalGame.Gameplay.Entities.Player
         [SerializeField] private float cameraTransitionSpeed = 100.0f;
         [SerializeField] private Transform exploringCameraTarget;
         [SerializeField] private Transform craftingCameraTarget;
+        
+        public ItemsSystem ItemsSystem { get; set; }
         
         private StateMachine<PlayerStateMachineCommand, State<PlayerStateMachineCommand>> stateMachine;
         private PlayerDependencies playerDependencies;
@@ -59,7 +62,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
             ExploringState exploringState = new(playerDependencies, exploringCameraTarget);
             exploringState.AddTransition<CraftingState>(PlayerStateMachineCommand.RequestCrafting);
 
-            CraftingState craftingState = new(playerDependencies, craftingCameraTarget);
+            CraftingState craftingState = new(playerDependencies, craftingCameraTarget, ItemsSystem);
             craftingState.AddTransition<ExploringState>(PlayerStateMachineCommand.RequestExploring);
 
             stateMachine.AddState(exploringState);
