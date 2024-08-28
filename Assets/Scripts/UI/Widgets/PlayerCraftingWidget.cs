@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using SurvivalGame.ScriptableObjects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace SurvivalGame.UI.Widgets
         [Header("Player Crafting Widget Dependencies")]
         [SerializeField] private Button backButton;
         [SerializeField] private Button craftButton;
+        [SerializeField] private TMP_Text successChanceText;
         [SerializeField] private SlotWidget[] ingredientsSlotsInOrder;
         [SerializeField] private SlotWidget outputSlot;
 
@@ -51,14 +53,18 @@ namespace SurvivalGame.UI.Widgets
 
         public void UpdateOutputSlot(RecipeData recipeData)
         {
+            successChanceText.gameObject.SetActive(recipeData);
+            
             if (recipeData)
             {
+                int percentageSuccessChance = (int)(recipeData.SuccessChance * 100.0f);
+                successChanceText.text = $"Success chance: {percentageSuccessChance}%";
                 outputSlot.SetDisplayImage(recipeData.SuccessfulOutput.Image);
                 outputSlot.SetTooltip(recipeData.SuccessfulOutput.DisplayName);
             }
             else
             {
-                outputSlot.Clear();   
+                outputSlot.Clear();
             }
         }
 
