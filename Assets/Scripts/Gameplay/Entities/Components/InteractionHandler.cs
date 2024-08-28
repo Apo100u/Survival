@@ -16,7 +16,8 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
         private GameObject previousClosestInteractable;
         private GameObject closestInteractable;
-        private List<GameObject> interactablesInRange = new();
+        private List<IInteractable> interactablesInRange = new();
+        private List<GameObject> interactablesGameObjectsInRange = new();
 
         private void OnEnable()
         {
@@ -36,17 +37,41 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
         private void Update()
         {
-            RemoveInactiveInteractablesInRange();
+            UnregisterInactiveInteractablesInRange();
             UpdateClosestInteractable();
         }
 
-        private void RemoveInactiveInteractablesInRange()
+        private void RegisterInteractable(GameObject interactableObject)
         {
-            for (int i = interactablesInRange.Count - 1; i >= 0; i--)
+            interactablesInRange.Add(interactableObject.GetComponent<IInteractable>());
+            interactablesGameObjectsInRange.Add(interactableObject);
+        }
+
+        private void UnregisterInteractable(GameObject interactableObject)
+        {
+            for (int i = interactablesGameObjectsInRange.Count - 1; i >= 0; i--)
             {
-                if (!interactablesInRange[i].activeSelf)
+                if (interactablesGameObjectsInRange[i] == interactableObject)
                 {
-                    interactablesInRange.RemoveAt(i);
+                    UnregisterInteractableAt(i);
+                    break;
+                }
+            }
+        }
+
+        private void UnregisterInteractableAt(int index)
+        {
+            interactablesInRange.RemoveAt(index);
+            interactablesGameObjectsInRange.RemoveAt(index);
+        }
+
+        private void UnregisterInactiveInteractablesInRange()
+        {
+            for (int i = interactablesGameObjectsInRange.Count - 1; i >= 0; i--)
+            {
+                if (!interactablesGameObjectsInRange[i].activeSelf || !interactablesInRange[i].IsInteractable())
+                {
+                    UnregisterInteractableAt(i);
                 }
             }
         }
@@ -56,9 +81,9 @@ namespace SurvivalGame.Gameplay.Entities.Components
             closestInteractable = null;
             float closestDistance = float.MaxValue;
             
-            for (int i = 0; i < interactablesInRange.Count; i++)
+            for (int i = 0; i < interactablesGameObjectsInRange.Count; i++)
             {
-                GameObject interactable = interactablesInRange[i];
+                GameObject interactable = interactablesGameObjectsInRange[i];
 
                 float sqrDistance = Vector3.SqrMagnitude(transform.position - interactable.transform.position);
                 
@@ -84,7 +109,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
             if (interactable != null)
             {
-                interactablesInRange.Add(other.gameObject);
+                RegisterInteractable(other.gameObject);
             }
         }
 
@@ -94,7 +119,7 @@ namespace SurvivalGame.Gameplay.Entities.Components
 
             if (interactable != null)
             {
-                interactablesInRange.Remove(other.gameObject);
+                UnregisterInteractable(other.gameObject);
             }
         }
 

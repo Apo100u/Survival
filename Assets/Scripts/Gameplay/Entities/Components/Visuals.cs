@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using SurvivalGame.Gameplay.Helpers;
 using SurvivalGame.ScriptableObjects;
 using UnityEngine;
@@ -16,6 +18,8 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [SerializeField] private float walkingAnimationSpeed = 5.0f;
         [SerializeField] private float walkingAnimationSmoothness = 5.0f;
         [SerializeField] private float walkingAnimationMaxY = 0.3f;
+        [SerializeField] private float collectAnimationDuration = 1.0f;
+        [SerializeField] private Vector3 collectAnimationOffset = Vector3.up;
 
         private bool isWalkingAnimationActive;
         private float walkingAnimationSinProgress;
@@ -43,6 +47,32 @@ namespace SurvivalGame.Gameplay.Entities.Components
             float distanceDelta = walkingAnimationSmoothness * Time.deltaTime;
             targetPosition.y = targetPositionY;
             visualsParent.transform.localPosition = Vector3.MoveTowards(visualsParent.transform.localPosition, targetPosition, distanceDelta);
+        }
+
+        public void PlayCollectAnimation(GameObject collectedObject, Action onAnimationEnded)
+        {
+            StartCoroutine(PlayCollectAnimationCoroutine(collectedObject, onAnimationEnded));
+        }
+        
+        private IEnumerator PlayCollectAnimationCoroutine(GameObject collectedObject, Action onAnimationEnded)
+        {
+            Vector3 originalScale = collectedObject.transform.localScale;
+
+            float animationTime = 0.0f;
+
+            while (animationTime <= collectAnimationDuration)
+            {
+                animationTime += Time.deltaTime;
+                float animationProgress = animationTime / collectAnimationDuration;
+
+                collectedObject.transform.position = Vector3.Lerp(collectedObject.transform.position, transform.position + collectAnimationOffset, animationProgress);
+                collectedObject.transform.localScale = Vector3.Lerp(collectedObject.transform.localScale, Vector3.zero, animationProgress);
+                
+                yield return null;
+            }
+
+            collectedObject.transform.localScale = originalScale;
+            onAnimationEnded?.Invoke();
         }
 
         public void LookAt(Vector3 worldPosition)

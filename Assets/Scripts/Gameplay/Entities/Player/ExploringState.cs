@@ -90,14 +90,18 @@ namespace SurvivalGame.Gameplay.Entities.Player
                     UpdateInventoryWidget();
                 }
 
-                objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
+                item.SetIsInteractable(false);
+                
+                visuals.PlayCollectAnimation(item.gameObject, onAnimationEnded: () =>
+                {
+                    item.SetIsInteractable(true);
+                    objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
+                });
 
                 if (!firstItemCollected)
                 {
                     firstItemCollected = true;
-                    hud.InfoWidget.Show(true);
-                    hud.InfoWidget.SetInfoText($"Press [{input.InventoryKey}] to open inventory.");
-                    hud.InfoWidget.HideAfterSeconds(5.0f);
+                    ShowInventoryTutorialMessage();
                 }
             }
             else
@@ -157,6 +161,13 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void UpdateInventoryWidget()
         {
             hud.PlayerInventoryWidget.ShowItems(inventory.GetItems());
+        }
+
+        private void ShowInventoryTutorialMessage()
+        {
+            hud.InfoWidget.Show(true);
+            hud.InfoWidget.SetInfoText($"Press [{input.InventoryKey}] to open inventory.");
+            hud.InfoWidget.HideAfterSeconds(5.0f);
         }
     }
 }

@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25ab220792b7aa42907ec124b050ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  capacity: 16
   dropRange: 2
 --- !u!114 &2184537718997832270
 MonoBehaviour:
@@ -237,6 +238,8 @@ MonoBehaviour:
   walkingAnimationSpeed: 15
   walkingAnimationSmoothness: 100
   walkingAnimationMaxY: 0.5
+  collectAnimationDuration: 5
+  collectAnimationOffset: {x: 0, y: 2, z: 0}
 --- !u!54 &3347561731725555312
 Rigidbody:
   m_ObjectHideFlags: 0
