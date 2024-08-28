@@ -32,7 +32,7 @@ namespace SurvivalGame.UI.Widgets
                 : hiddenPosition;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (rectTransform.anchoredPosition != targetPosition)
             {

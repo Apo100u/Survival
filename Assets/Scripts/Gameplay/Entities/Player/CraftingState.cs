@@ -47,17 +47,22 @@ namespace SurvivalGame.Gameplay.Entities.Player
         {
             if (recipeFromCurrentIngredients)
             {
-                TryCrafting(recipeFromCurrentIngredients);
+                TryCrafting();
             }
         }
 
-        private void TryCrafting(RecipeData recipeData)
+        private void TryCrafting()
         {
-            bool isCraftingSuccessful = Random.Range(0f, 1f) <= recipeData.SuccessChance;
+            hud.PlayerCraftingWidget.PlayCraftingAnimation(recipeFromCurrentIngredients.CraftingTimeInSeconds, OnCraftingAnimationEnded);
+        }
 
-            for (int i = 0; i < recipeData.Ingredients.Length; i++)
+        private void OnCraftingAnimationEnded()
+        {
+            bool isCraftingSuccessful = Random.Range(0f, 1f) <= recipeFromCurrentIngredients.SuccessChance;
+
+            for (int i = 0; i < recipeFromCurrentIngredients.Ingredients.Length; i++)
             {
-                inventory.RemoveItem(recipeData.Ingredients[i]);
+                inventory.RemoveItem(recipeFromCurrentIngredients.Ingredients[i]);
                 hud.PlayerCraftingWidget.ClearIngredientSlots();
             }
         }

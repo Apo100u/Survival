@@ -15,6 +15,7 @@ namespace SurvivalGame.UI.Widgets
         [SerializeField] private TMP_Text successChanceText;
         [SerializeField] private SlotWidget[] ingredientsSlotsInOrder;
         [SerializeField] private SlotWidget outputSlot;
+        [SerializeField] private Image craftingAnimationImage;
 
         public event Action<IngredientEventArgs> IngredientAdded;
         public event Action<IngredientEventArgs> IngredientRemoved;
@@ -22,6 +23,10 @@ namespace SurvivalGame.UI.Widgets
         public event Action CraftButtonInteracted;
         
         private Dictionary<SlotWidget, ItemData> ingredientsBySlots = new();
+        private bool isPlayingCraftingAnimation;
+        private float craftingAnimationDuration;
+        private float craftingAnimationTimeLeft;
+        private Action craftingAnimationCallback;
         
         public override void Init(Camera camera, RectTransform area)
         {
@@ -39,6 +44,22 @@ namespace SurvivalGame.UI.Widgets
             
             backButton.onClick.AddListener(OnBackButtonInteracted);
             craftButton.onClick.AddListener(OnCraftButtonInteracted);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            if (isPlayingCraftingAnimation)
+            {
+                craftingAnimationTimeLeft -= Time.deltaTime;
+                craftingAnimationImage.fillAmount = craftingAnimationTimeLeft / craftingAnimationDuration;
+
+                if (craftingAnimationTimeLeft <= 0.0f)
+                {
+                    OnCraftingAnimationEnded();
+                }
+            }
         }
 
         public override void Show(bool show)
@@ -67,7 +88,7 @@ namespace SurvivalGame.UI.Widgets
                 outputSlot.Clear();
             }
         }
-
+        
         private void Clear()
         {
             for (int i = 0; i < ingredientsSlotsInOrder.Length; i++)
@@ -82,7 +103,7 @@ namespace SurvivalGame.UI.Widgets
 
         private void OnInventorySlotInteracted(InventorySlotInteractedEventArgs args)
         {
-            if (args.ItemInSlotData && TryShowNextIngredient(args.ItemInSlotData))
+            if (!isPlayingCraftingAnimation && args.ItemInSlotData && TryShowNextIngredient(args.ItemInSlotData))
             {
                 ShowItemInInventorySlot(args.SlotWidget, null);
             }
@@ -90,7 +111,7 @@ namespace SurvivalGame.UI.Widgets
         
         private void OnIngredientSlotInteracted(SlotInteractedEventArgs args)
         {
-            if (ingredientsBySlots[args.SlotWidget])
+            if (!isPlayingCraftingAnimation && ingredientsBySlots[args.SlotWidget])
             {
                 RemoveIngredient(args.SlotWidget);
             }
@@ -151,6 +172,26 @@ namespace SurvivalGame.UI.Widgets
                 ingredientsSlotsInOrder[i].Clear();
                 ingredientsBySlots[ingredientsSlotsInOrder[i]] = null;
             }
+        }
+        
+        public void PlayCraftingAnimation(float durationInSeconds, Action onAnimationEnded)
+        {
+            craftingAnimationImage.gameObject.SetActive(true);
+            craftButton.interactable = false;
+            backButton.interactable = false;
+            isPlayingCraftingAnimation = true;
+            craftingAnimationDuration = durationInSeconds;
+            craftingAnimationTimeLeft = durationInSeconds;
+            craftingAnimationCallback = onAnimationEnded;
+        }
+
+        private void OnCraftingAnimationEnded()
+        {
+            craftingAnimationImage.gameObject.SetActive(false);
+            craftButton.interactable = true;
+            backButton.interactable = true;
+            isPlayingCraftingAnimation = false;
+            craftingAnimationCallback?.Invoke();
         }
     }
 
