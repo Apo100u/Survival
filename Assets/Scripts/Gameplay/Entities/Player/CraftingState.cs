@@ -23,7 +23,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             craftingCalculator = new CraftingCalculator(itemsSystem.RecipeTreeByUniqueIds);
             ShowCraftingUI(true);
-            SetupLookAtVisualsForCrafting();
+            SetupVisualsForCrafting();
             
             hud.PlayerCraftingWidget.CraftButtonInteracted += OnCraftButtonInteracted;
             hud.PlayerCraftingWidget.IngredientAdded += OnIngredientAdded;
@@ -136,10 +136,11 @@ namespace SurvivalGame.Gameplay.Entities.Player
             }
         }
 
-        private void SetupLookAtVisualsForCrafting()
+        private void SetupVisualsForCrafting()
         {
             Vector3 lootAtTarget = visuals.transform.position - Vector3.forward;
             visuals.LookAt(lootAtTarget);
+            visuals.SetWalkingAnimationActive(false);
         }
     }
 }
