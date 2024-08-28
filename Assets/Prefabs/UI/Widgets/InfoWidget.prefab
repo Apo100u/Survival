@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transformFollowOffset: {x: 0, y: 0, z: 0}
-  slideSpeed: 1000
+  slideSpeed: 500
   infoText: {fileID: 6577448067110788491}
 --- !u!1 &9070325013397246809
 GameObject:

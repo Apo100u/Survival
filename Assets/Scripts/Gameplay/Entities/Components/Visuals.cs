@@ -64,7 +64,10 @@ namespace SurvivalGame.Gameplay.Entities.Components
         {
             for (int i = 0; i < datasOfItemsInHands.Length; i++)
             {
-                RemoveItemFromHand(datasOfItemsInHands[i]);
+                if (datasOfItemsInHands[i])
+                {
+                    RemoveItemFromHand(datasOfItemsInHands[i]);
+                }
             }
         }
     }

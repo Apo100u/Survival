@@ -36,6 +36,16 @@ namespace SurvivalGame.Gameplay.Entities.Player
             SetUpStateTransitions();
         }
 
+        private void Start()
+        {
+            string movementTutorialMessage = $"Press [{playerDependencies.Input.ForwardMovementKey}, {playerDependencies.Input.BackwardMovementKey}, " +
+                                             $"{playerDependencies.Input.LeftMovementKey}, {playerDependencies.Input.RightMovementKey}] to move.";
+            
+            hud.InfoWidget.Show(true);
+            hud.InfoWidget.SetInfoText(movementTutorialMessage);
+            hud.InfoWidget.HideAfterSeconds(5.0f);
+        }
+
         private void Update()
         {
             stateMachine.Process();

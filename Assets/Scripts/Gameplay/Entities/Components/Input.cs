@@ -15,7 +15,12 @@ namespace SurvivalGame.Gameplay.Entities.Components
         [SerializeField] private KeyCode interact         = KeyCode.E;
         [SerializeField] private KeyCode inventory        = KeyCode.I;
 
+        public KeyCode ForwardMovementKey => forwardMovement;
+        public KeyCode BackwardMovementKey => backwardMovement;
+        public KeyCode RightMovementKey => rightMovement;
+        public KeyCode LeftMovementKey => leftMovement;
         public KeyCode InteractKey => interact;
+        public KeyCode InventoryKey => inventory;
 
         public Vector3 GetNormalizedMovementInput()
         {

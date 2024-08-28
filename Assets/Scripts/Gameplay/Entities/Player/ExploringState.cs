@@ -10,6 +10,8 @@ namespace SurvivalGame.Gameplay.Entities.Player
 {
     public class ExploringState : PlayerState
     {
+        private bool firstItemCollected;
+        
         public ExploringState(PlayerDependencies playerDependencies, Transform cameraTarget) : base(playerDependencies, cameraTarget)
         {
         }
@@ -67,14 +69,27 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             if (item)
             {
-                inventory.AddItem(item.ItemData);
+                CollectItem(item);
+            }
+        }
 
-                if (hud.PlayerInventoryWidget.IsShown)
-                {
-                    UpdateInventoryWidget();
-                }
-                
-                objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
+        private void CollectItem(Item item)
+        {
+            inventory.AddItem(item.ItemData);
+
+            if (hud.PlayerInventoryWidget.IsShown)
+            {
+                UpdateInventoryWidget();
+            }
+
+            objectPools.ReturnToPool(item.ItemData.Prefab, item.gameObject);
+
+            if (!firstItemCollected)
+            {
+                firstItemCollected = true;
+                hud.InfoWidget.Show(true);
+                hud.InfoWidget.SetInfoText($"Press [{input.InventoryKey}] to open inventory.");
+                hud.InfoWidget.HideAfterSeconds(5.0f);
             }
         }
 
