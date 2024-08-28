@@ -34,7 +34,7 @@ namespace SurvivalGame.UI.Widgets
             InventorySlotInteracted?.Invoke(new InventorySlotInteractedEventArgs(slot, itemData));
         }
 
-        protected void ShowItemInFirstEmptyInventorySlot(ItemData itemData)
+        public void ShowItemInFirstEmptyInventorySlot(ItemData itemData)
         {
             for (int i = 0; i < slotsInOrder.Length; i++)
             {

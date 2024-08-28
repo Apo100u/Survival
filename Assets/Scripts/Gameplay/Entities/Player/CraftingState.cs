@@ -62,9 +62,19 @@ namespace SurvivalGame.Gameplay.Entities.Player
 
             for (int i = 0; i < recipeFromCurrentIngredients.Ingredients.Length; i++)
             {
-                inventory.RemoveItem(recipeFromCurrentIngredients.Ingredients[i]);
-                hud.PlayerCraftingWidget.ClearIngredientSlots();
+                ItemData ingredient = recipeFromCurrentIngredients.Ingredients[i];
+                craftingCalculator.RemoveIngredient(ingredient);
+                inventory.RemoveItem(ingredient);
             }
+
+            if (isCraftingSuccessful)
+            {
+                inventory.AddItem(recipeFromCurrentIngredients.SuccessfulOutput);
+                hud.PlayerCraftingWidget.ShowItemInFirstEmptyInventorySlot(recipeFromCurrentIngredients.SuccessfulOutput);
+            }
+
+            hud.PlayerCraftingWidget.ClearIngredientSlots();
+            UpdateCurrentRecipe();
         }
 
         private void OnIngredientAdded(IngredientEventArgs args)
@@ -103,6 +113,10 @@ namespace SurvivalGame.Gameplay.Entities.Player
             if (show)
             {
                 hud.PlayerCraftingWidget.ShowItems(inventory.GetItems());
+            }
+            else
+            {
+                hud.PlayerInventoryWidget.ShowItems(inventory.GetItems());
             }
         }
 
