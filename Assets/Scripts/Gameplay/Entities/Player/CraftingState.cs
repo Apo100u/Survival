@@ -1,5 +1,6 @@
 using SurvivalGame.Gameplay.Helpers.Calculators;
 using SurvivalGame.Gameplay.Items;
+using SurvivalGame.ScriptableObjects;
 using SurvivalGame.UI.Widgets;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace SurvivalGame.Gameplay.Entities.Player
     {
         private ItemsSystem itemsSystem;
         private CraftingCalculator craftingCalculator;
+        private RecipeData recipeFromCurrentIngredients;
         
         public CraftingState(PlayerDependencies playerDependencies, Transform cameraTarget, ItemsSystem itemsSystem) : base(playerDependencies, cameraTarget)
         {
@@ -41,11 +43,29 @@ namespace SurvivalGame.Gameplay.Entities.Player
         private void OnIngredientAdded(IngredientEventArgs args)
         {
             craftingCalculator.AddIngredient(args.Ingredient);
+            UpdateCurrentRecipe();
         }
 
         private void OnIngredientRemoved(IngredientEventArgs args)
         {
             craftingCalculator.RemoveIngredient(args.Ingredient);
+            UpdateCurrentRecipe();
+        }
+
+        private void UpdateCurrentRecipe()
+        {
+            int? recipeUniqueId = craftingCalculator.GetOutputRecipeUniqueId();
+
+            recipeFromCurrentIngredients = recipeUniqueId == null
+                ? null
+                : itemsSystem.GetRecipeByUniqueId((int)recipeUniqueId);
+
+            UpdateRecipeOutputOnCraftingWidget();
+        }
+
+        private void UpdateRecipeOutputOnCraftingWidget()
+        {
+            hud.PlayerCraftingWidget.UpdateOutputSlot(recipeFromCurrentIngredients);
         }
 
         private void ShowCraftingUI(bool show)

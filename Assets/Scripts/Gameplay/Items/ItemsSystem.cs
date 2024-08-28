@@ -21,6 +21,11 @@ namespace SurvivalGame.Gameplay.Items
             CreateRecipeTree();
         }
 
+        public RecipeData GetRecipeByUniqueId(int uniqueId)
+        {
+            return recipes[uniqueId];
+        }
+
         private void AssignUniqueIds()
         {
             for (int i = 0; i < items.Length; i++)

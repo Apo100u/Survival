@@ -49,6 +49,19 @@ namespace SurvivalGame.UI.Widgets
             }
         }
 
+        public void UpdateOutputSlot(RecipeData recipeData)
+        {
+            if (recipeData)
+            {
+                outputSlot.SetDisplayImage(recipeData.SuccessfulOutput.Image);
+                outputSlot.SetTooltip(recipeData.SuccessfulOutput.DisplayName);
+            }
+            else
+            {
+                outputSlot.Clear();   
+            }
+        }
+
         private void Clear()
         {
             for (int i = 0; i < ingredientsSlotsInOrder.Length; i++)
