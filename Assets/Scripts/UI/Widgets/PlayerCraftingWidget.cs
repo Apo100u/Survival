@@ -59,9 +59,9 @@ namespace SurvivalGame.UI.Widgets
 
         private void OnSlotInteracted(InventorySlotInteractedEventArgs args)
         {
-            if (TryShowNextIngredient(args.ItemInSlotData))
+            if (args.ItemInSlotData && TryShowNextIngredient(args.ItemInSlotData))
             {
-                args.SlotWidget.Clear();
+                ShowItemInInventorySlot(args.SlotWidget, null);
             }
         }
 

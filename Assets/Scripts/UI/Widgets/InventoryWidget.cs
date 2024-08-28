@@ -34,6 +34,19 @@ namespace SurvivalGame.UI.Widgets
             SlotInteracted?.Invoke(new InventorySlotInteractedEventArgs(slot, itemData));
         }
 
+        public void ShowItemOnFirstEmptySlot(ItemData itemData)
+        {
+            for (int i = 0; i < slotsInOrder.Length; i++)
+            {
+                SlotWidget slot = slotsInOrder[i];
+                
+                if (!itemsBySlots[slot])
+                {
+                    ShowItemInInventorySlot(slot, itemData);
+                }
+            }
+        }
+
         public void ShowItems(IList<ItemData> items)
         {
             if (items.Count > slotsInOrder.Length)
@@ -47,19 +60,28 @@ namespace SurvivalGame.UI.Widgets
                 
                 if (i < items.Count)
                 {
-                    ItemData itemData = items[i];
-
-                    slot.SetDisplayImage(itemData.Image);
-                    slot.SetTooltip(itemData.DisplayName);
-                    itemsBySlots[slot] = itemData;
+                    ShowItemInInventorySlot(slot, items[i]);
                 }
                 else
                 {
-                    slot.SetDisplayImage(null);
-                    slot.SetTooltip(string.Empty);
-                    itemsBySlots[slot] = null;
+                    ShowItemInInventorySlot(slot, null);
                 }
             }
+        }
+
+        protected void ShowItemInInventorySlot(SlotWidget slotWidget, ItemData itemData)
+        {
+            if (itemData)
+            {
+                slotWidget.SetDisplayImage(itemData.Image);
+                slotWidget.SetTooltip(itemData.DisplayName);
+            }
+            else
+            {
+                slotWidget.Clear();
+            }
+
+            itemsBySlots[slotWidget] = itemData;
         }
     }
 
